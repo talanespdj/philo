@@ -11,11 +11,15 @@
 /* ************************************************************************** */
 #include "philosophers.h"
 
-void	everinit(struct philo *philo, char **argv)
+void	everinit(struct philo *p, char **argv)
 {
-	n_agonist = talanatoi(argv[1]);
-	n_fork = talanatoi(argv[2]);
-	tt_die = talanatoi(argv[3]);
-	tt_eat = talanatoi(argv[4]);
-	tt_sleep = talanatoi(argv[5]);
+	p->data = (t_data *)malloc(sizeof(t_data));
+	if (!p->data)
+		exit(EXIT_FAILURE);
+	p->data->n_agonist = talanatoi(argv[1]);
+	p->data->n_fork = talanatoi(argv[2]);
+	p->data->tt_die = talanatoi(argv[3]);
+	p->data->tt_eat = talanatoi(argv[4]);
+	p->data->tt_sleep = talanatoi(argv[5]);
+	p->status = 0;
 }

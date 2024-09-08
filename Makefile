@@ -1,6 +1,6 @@
 NAME = philosophers
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -O3 -g3
+CFLAGS = -Wall -Werror -Wextra -pthread -O3 -g3
 
 SRC = philo.c \
 

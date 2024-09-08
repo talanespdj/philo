@@ -1,0 +1,13 @@
+https://www.geeksforgeeks.org/thread-functions-in-c-c/
+https://www.geeksforgeeks.org/condition-wait-signal-multi-threading/?ref=next_article
+
+https://www.youtube.com/playlist?list=PLfqABt5AS4FmuQf70psXrsMLEDQXNkLq2
+
+[ ]= relire le sujet pour bien comprendre ce qui est demande
+
+
+[ ] = apprendre a quoi servent les thread, quelle utilitee + se renseigner sur les differentes fonctions autorisees
+	faire de meme pour les mutex
+
+	usleep // gettimeofday // pthread_create // pthread_detach // pthread_join // pthread_mutex_init 
+		pthread_mutex_destroy //pthread_mutex_lock // pthread_mutex_unlock

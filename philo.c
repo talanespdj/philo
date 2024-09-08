@@ -11,16 +11,18 @@
 /* ************************************************************************** */
 #include "philosophers.h"
 
-
-
+void	philosophers(struct philo *philo, char **argv, char **env)
+{
+	everinit(philo, argv);
+}
 
 int	main(int argc, char **argv, char **envp)
-{
-	struct	philo	philo;
+{	
+	struct philo	philo;
 
-	if (argc != 6 || !env[0])
+	if (argc != 6 || !envp[0])
 		return (0);
 	else
-
+		philosophers(&philo, argv, envp);
 	return (0);
 }
