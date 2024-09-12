@@ -6,26 +6,40 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 21:47:32 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/12 22:54:49 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/13 00:37:39 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "philosophers.h"
+#include "philo.h"
 
-void	philosophers(struct philo *p, char **argv, char *const *envp)
+static	void	freeve(struct philo *p, int status)
 {
-	everinit(p, argv, envp);
+	free(p->data);
+	exit(status);
+}
+
+void	philosophers(struct philo *p, char **argv)
+{
+	everinit(p, argv);
+//	p->data->test = eating;
+//	wthestate(p->data->test); 
+	if (p->status)
+	{
+		free(p->data);
+		exit(1);
+	}	
 }
 
 int	main(int argc, char **argv, char **envp)
 {	
 	struct philo	philo;
 
+	(void)envp;
 	if (argc != 5 && argc != 6)
-		putstr("need ./philosophers + 4 || 5 args\n");
+		printf("need ./philosophers + 4 || 5 args\n");
 	else
 	{
-		philosophers(&philo, argv, envp);
-		free(philo.data);
+		philosophers(&philo, argv);
+		freeve(&philo, philo.status);
 	}
 	return (0);
 }

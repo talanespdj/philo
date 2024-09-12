@@ -6,33 +6,19 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 22:11:06 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/12 22:53:11 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/13 00:46:46 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "philosophers.h"
+#include "philo.h"
 
-void	putstr(char *str)
+void	wthestate(enum w_state state)
 {
-	while (*str)
-		write(1, str++, 1);
-}
-
-static int	sign(struct philo *p, char *str)
-{
-	int	s;
-	int	i;
-
-	i = 0;
-	s = 1;
-	if ((str[i] == '-') || (str[i] == '+'))
-	{
-		if (str[i] == '-')
-			s = -s;
-		i++;
-	}
-	if (!(str[i] >= '0' && str[i] <= '9'))
-		return (sstatus(p, 42));
-	return (s);
+	if (state == eating)
+		printf("le philosophe est en train de eating\n");
+	if (state == sleeping)
+		printf("le philosophe est en train de sleeping\n");
+	else if (state == thinking)
+		printf("le philosophe est en train de thinking\n");
 }
 
 int	talanatoi(struct philo *p, char *str)
@@ -43,14 +29,17 @@ int	talanatoi(struct philo *p, char *str)
 	i = 0;
 	nt = 0;
 	if ((str[i] == '-') || (str[i] == '+'))
+	{
+		if (str[i] == '-')
+			return (sstatus(p, 42));
 		i++;
+	}
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		nt = nt * 10 + (str[i] - 48);
 		i++;
 	}
-	nt *= sign(p, str);
-	if (nt > 2147483647 || nt < -2147483648)
+	if (nt > 2147483647 || nt <= 0)
 		return (sstatus(p, 42));
 	return (nt);
 }
