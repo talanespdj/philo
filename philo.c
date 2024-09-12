@@ -6,27 +6,18 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 21:47:32 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/13 00:37:39 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/13 01:47:40 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
-
-static	void	freeve(struct philo *p, int status)
-{
-	free(p->data);
-	exit(status);
-}
 
 void	philosophers(struct philo *p, char **argv)
 {
 	everinit(p, argv);
 //	p->data->test = eating;
 //	wthestate(p->data->test); 
-	if (p->status)
-	{
-		free(p->data);
-		exit(1);
-	}	
+	if (p->situation)
+		wgas(p, p->situation);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -39,7 +30,7 @@ int	main(int argc, char **argv, char **envp)
 	else
 	{
 		philosophers(&philo, argv);
-		freeve(&philo, philo.status);
+		free(philo.data);
 	}
 	return (0);
 }

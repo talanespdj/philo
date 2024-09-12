@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 22:11:06 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/13 01:24:46 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/13 01:51:33 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
@@ -34,6 +34,9 @@ int	talanatoi(struct philo *p, char *str, int d)
 			return (sstatus(p, 42));
 		i++;
 	}
+	if (d == 5)
+		if (!(str[i] >= '0' && str[i] <= '9'))
+			return (sstatus(p, 42));
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		nt = nt * 10 + (str[i] - 48);

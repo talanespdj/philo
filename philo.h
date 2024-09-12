@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 21:47:51 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/13 01:21:30 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/13 01:49:12 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PHILO_H
@@ -28,14 +28,14 @@ typedef enum w_state
 typedef struct philo
 {
 	struct data	*data;
-	int			status;
+	int			situation;
 }			t_philo;
 
 typedef struct data
 {
 	enum w_state	test;
-	char		**argv;
-	int				n_agonist;
+	char			**argv;
+	int				n_philo;
 	int				n_fork;
 	int				tt_die;
 	int				tt_eat;
@@ -48,9 +48,10 @@ typedef struct trd
 
 void				everinit(struct philo *p, char **argv);
 
+void				wgas(struct philo *p, int status);
 int					sstatus(struct philo *p, int d);
-void				wthestate(enum w_state state);
 
+void				wthestate(enum w_state state);
 int					talanatoi(struct philo *p, char *str, int d);
 
 #endif
