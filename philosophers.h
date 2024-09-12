@@ -36,6 +36,8 @@ typedef struct data
 
 void				everinit(struct philo *p, char **argv, char *const *envp);
 
+int				sstatus(struct philo *p, int d);
+
 void				putstr(char *str);
 int				talanatoi(struct philo *p, char *str);
 

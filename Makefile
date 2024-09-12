@@ -3,6 +3,7 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra -pthread -O3 -g3
 
 SRC = philo.c \
+	wgas.c \
 	utils.c \
 	process.c \
 
