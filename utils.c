@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 22:11:06 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/13 00:46:46 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/13 01:24:46 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
@@ -21,7 +21,7 @@ void	wthestate(enum w_state state)
 		printf("le philosophe est en train de thinking\n");
 }
 
-int	talanatoi(struct philo *p, char *str)
+int	talanatoi(struct philo *p, char *str, int d)
 {
 	long long int	nt;
 	int				i;
@@ -39,7 +39,10 @@ int	talanatoi(struct philo *p, char *str)
 		nt = nt * 10 + (str[i] - 48);
 		i++;
 	}
-	if (nt > 2147483647 || nt <= 0)
+	if (d != 5 && (nt > 2147483647 || nt <= 0))
 		return (sstatus(p, 42));
+	else if (d == 5)
+		if (nt > 2147483647 || nt < 0)
+			return (sstatus(p, 42));
 	return (nt);
 }
