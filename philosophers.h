@@ -31,6 +31,12 @@ typedef struct data
 	int		tt_die;
 	int		tt_eat;
 	int		tt_sleep;
+	char *const	*env;
 }			t_data;
+
+void				everinit(struct philo *p, char **argv, char *const *envp);
+
+void				putstr(char *str);
+int				talanatoi(struct philo *p, char *str);
 
 #endif

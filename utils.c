@@ -11,6 +11,12 @@
 /* ************************************************************************** */
 #include "philosophers.h"
 
+void	putstr(char *str)
+{
+	while (*str)
+		write(1, str++, 1);
+}
+
 static	int	sign(struct philo *p, int nt, char *str)
 {
 	int	s;
