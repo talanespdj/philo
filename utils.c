@@ -6,10 +6,16 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 22:11:06 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/13 01:51:33 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/13 16:51:22 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
+
+void	putstrfd(char *str, int fd)
+{
+	while (*str)
+		write(fd, str++, 1);
+}
 
 void	wthestate(enum w_state state)
 {
@@ -23,8 +29,8 @@ void	wthestate(enum w_state state)
 
 int	talanatoi(struct philo *p, char *str, int d)
 {
-	long long int	nt;
-	int				i;
+	long int	nt;
+	int			i;
 
 	i = 0;
 	nt = 0;
