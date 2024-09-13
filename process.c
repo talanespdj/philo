@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 22:08:26 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/13 19:47:15 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/13 20:52:02 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
@@ -25,14 +25,25 @@ void	everinit(struct philo *p, char **av)
 	if (av[5])
 		p->data->tt_sleep = talanatoi(p, av[5], 5);
 	if (p->situation == 42)
-	{
-		putstrfd("verif args, must be numbers > 0\n", 2);
 		wgas(p, -1);
-	}
 	p->phl = (t_phl **)malloc(sizeof(t_phl) * (p->data->n_philo));
 	if (!p->phl)
 		wgas(p, -1);
+	init_phl(p, -1);
 	fill_phl(p);
+}
+
+void	init_phl(struct philo *p, int i)
+{
+	while (++i < p->data->n_philo)
+	{
+		p->phl[i] = (t_phl *)malloc(sizeof(t_phl));
+		if (!p->phl[i])
+			wgas(p, sstatus(p, i));
+		p->phl[i]->state = thinking;
+		p->phl[i]->id = i + 1;
+		p->phl[i]->fork = 0;
+	}
 }
 
 void	fill_phl(struct philo *p)
@@ -42,11 +53,8 @@ void	fill_phl(struct philo *p)
 	i = -1;
 	while (++i < p->data->n_philo)
 	{
-		p->phl[i] = (t_phl *)malloc(sizeof(t_phl));
-		if (!p->phl[i])
-			wgas(p, sstatus(p, i));
-		p->phl[i]->state = init;
-		p->phl[i]->id = i + 1;
-//		pthread_create(&p->phl[i]->thread, NULL, &philosopher, (void *)p->phl[i]);
+		p->i = i;
+		pthread_create(&p->phl[i]->thread, NULL, &philosopher, (void *)p);
+		pthread_join(p->phl[i]->thread, NULL);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 21:47:51 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/13 19:38:06 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/13 20:51:20 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PHILO_H
@@ -20,10 +20,10 @@
 
 typedef enum w_state
 {
-	init,
 	eating,
 	sleeping,
-	thinking
+	thinking,
+	died,
 }		t_state;
 
 typedef struct philo
@@ -31,6 +31,7 @@ typedef struct philo
 	struct phl	**phl;
 	struct data	*data;
 	int			situation;
+	int			i;
 }			t_philo;
 
 typedef struct data
@@ -47,6 +48,7 @@ typedef struct phl
 {
 	enum w_state	state;
 	pthread_t		thread;
+	pthread_mutex_t		mutex;
 	int				id;
 	int				fork;
 }			t_phl;
@@ -54,6 +56,7 @@ typedef struct phl
 void				*philosopher(void *philo);
 
 void				everinit(struct philo *p, char **argv);
+void				init_phl(struct philo *p, int i);
 void				fill_phl(struct philo *p);
 
 void				wgas(struct philo *p, int status);

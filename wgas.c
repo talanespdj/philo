@@ -20,6 +20,8 @@ void	wgas(struct philo *p, int status)
 		else
 			free_phl(p, p->situation);
 	}
+	else if (status == -1)
+		putstrfd("verif args, must be numbers > 0\n", 2);
 	free(p->data);
 	exit(status);
 }

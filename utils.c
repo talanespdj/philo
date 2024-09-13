@@ -20,11 +20,13 @@ void	putstrfd(char *str, int fd)
 void	wthestate(enum w_state state)
 {
 	if (state == eating)
-		printf("le philosophe est en train de eating\n");
-	if (state == sleeping)
-		printf("le philosophe est en train de sleeping\n");
+		printf("is eating\n");
+	else if (state == sleeping)
+		printf("is sleeping\n");
 	else if (state == thinking)
-		printf("le philosophe est en train de thinking\n");
+		printf("is thinking\n");
+	else if (state == died)
+		printf("died\n");
 }
 
 int	talanatoi(struct philo *p, char *str, int d)
