@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 22:08:26 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/13 16:53:56 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/13 17:50:09 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
@@ -29,20 +29,4 @@ void	everinit(struct philo *p, char **av)
 	p->phl = (t_phl **)malloc(sizeof(t_phl) * (p->data->n_philo));
 	if (!p->phl)
 		wgas(p, -1);
-	init_phl(p);
-}
-
-void	init_phl(struct philo *p)
-{
-	int	i;
-
-	i = -1;
-	while (++i < p->data->n_philo)
-	{
-		p->phl[i] = (t_phl *)malloc(sizeof(t_phl));
-		if (!p->phl[i])
-			wgas(p, sstatus(p, i));
-		p->phl[i]->state = init;
-		p->phl[i]->id = i + 1;
-	}
 }
