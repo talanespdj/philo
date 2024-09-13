@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 21:47:51 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/13 16:53:31 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/13 19:38:06 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PHILO_H
@@ -51,11 +51,13 @@ typedef struct phl
 	int				fork;
 }			t_phl;
 
+void				*philosopher(void *philo);
+
 void				everinit(struct philo *p, char **argv);
-void				init_phl(struct philo *p);
+void				fill_phl(struct philo *p);
 
 void				wgas(struct philo *p, int status);
-void				f_phl(struct philo *p, int d);
+void				free_phl(struct philo *p, int d);
 int					sstatus(struct philo *p, int d);
 
 void				putstrfd(char *str, int fd);

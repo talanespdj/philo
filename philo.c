@@ -6,25 +6,18 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 21:47:32 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/13 17:50:46 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/13 19:36:01 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
 
-void	philosophers(struct philo *p)
+void	*philosopher(void *philo)
 {
-	int	i;
+	struct	philo	*p;
 
-	i = -1;
-	while (++i < p->data->n_philo)
-	{
-		p->phl[i] = (t_phl *)malloc(sizeof(t_phl));
-		if (!p->phl[i])
-			wgas(p, sstatus(p, i));
-		p->phl[i]->state = init;
-		p->phl[i]->id = i + 1;
-//		pthread_create(p->phl[i]->thread, NULL, (*routine), p->phl[i]);
-	}
+	p = (struct philo *)philo;
+	return (p);
+
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -39,7 +32,7 @@ int	main(int argc, char **argv, char **envp)
 		everinit(&p, argv);
 		if (p.situation)
 			wgas(&p, p.situation);
-		philosophers(&p);
+		// philosopher(&p);
 		wgas(&p, 0);
 	}
 	return (0);
