@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 21:47:51 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/13 01:49:12 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/13 02:30:35 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PHILO_H
@@ -20,6 +20,7 @@
 
 typedef enum w_state
 {
+	init,
 	eating,
 	sleeping,
 	thinking
@@ -28,6 +29,7 @@ typedef enum w_state
 typedef struct philo
 {
 	struct data	*data;
+	struct phl	*phl;
 	int			situation;
 }			t_philo;
 
@@ -42,9 +44,12 @@ typedef struct data
 	int				tt_sleep;
 }			t_data;
 
-typedef struct trd
+typedef struct phl
 {
-}		t_trd;
+	struct phl	*next;
+	int			index;
+	t_state		state;
+}		t_phl;
 
 void				everinit(struct philo *p, char **argv);
 
