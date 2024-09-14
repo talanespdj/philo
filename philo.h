@@ -30,7 +30,9 @@ typedef struct philo
 {
 	struct phl	**phl;
 	struct data	*data;
+	long			tstart; // time auquel tout a commencé
 	int			situation;
+	int			pair;
 	int			i;
 }			t_philo;
 
@@ -50,6 +52,7 @@ typedef struct phl
 	pthread_t		thread;
 	pthread_mutex_t		mutex;
 	int				id;
+	long				lastteating; //combien de time qu'il n'a pas eat
 	int				fork;
 }			t_phl;
 

@@ -25,17 +25,35 @@ void	*philosopher(void *philo)
 	d = i + 1;
 	if (d == p->data->n_philo)
 		d = 0;
-	pthread_mutex_init(&p->phl[i]->mutex, NULL);
 	if (p->phl[i]->state == thinking)
 	{
 		pthread_mutex_lock(&p->phl[i]->mutex);
-		p->phl[d]->fork = 1;
-		printf("%d has taken a fork\n", i + 1);
-		p->phl[i]->fork = 1;
-		printf("%d has taken a fork\n", i + 1);
-		printf("%d is eating\n", i + 1);
+		if (d == 0)
+		{
+			p->phl[i]->fork = 1;
+			p->phl[d]->fork = 1;
+		}
+		else
+		{
+			p->phl[d]->fork = 1;
+			p->phl[i]->fork = 1;
+		}
+		printf("%d has taken a fork\n", p->phl[i]->id);
+		printf("%d has taken a fork\n", p->phl[i]->id);
+		p->phl[i]->state = eating;
+		printf("%d is eating\n", p->phl[i]->id);
+		//pthread_mutex_unlock(&p->phl[i]->mutex);
+	}
+	else if (p->phl[i]->state == eating)
+	{
+		p->phl[d]->fork = 0;
+		p->phl[i]->fork = 0;
+		p->phl[i]->state = eating;
+		printf("%d is thinking\n", p->phl[i]->id);
 		pthread_mutex_unlock(&p->phl[i]->mutex);
 	}
+	// else if (p->phl[i]->state == )
+	pthread_mutex_destroy(&p->phl[i]->mutex);
 	return (p);
 
 }

@@ -17,6 +17,7 @@ void	everinit(struct philo *p, char **av)
 	if (!p->data)
 		exit(EXIT_FAILURE);
 	p->situation = 0;
+	p->pair = 0;
 	p->data->n_philo = talanatoi(p, av[1], 1);
 	p->data->n_fork = talanatoi(p, av[2], 2);
 	p->data->tt_die = talanatoi(p, av[3], 3);
@@ -26,6 +27,8 @@ void	everinit(struct philo *p, char **av)
 		p->data->tt_sleep = talanatoi(p, av[5], 5);
 	if (p->situation == 42)
 		wgas(p, -1);
+	if (p->data->n_philo % 2 == 0)
+		p->pair = 1;
 	p->phl = (t_phl **)malloc(sizeof(t_phl) * (p->data->n_philo));
 	if (!p->phl)
 		wgas(p, -1);
@@ -40,6 +43,7 @@ void	init_phl(struct philo *p, int i)
 		p->phl[i] = (t_phl *)malloc(sizeof(t_phl));
 		if (!p->phl[i])
 			wgas(p, sstatus(p, i));
+		pthread_mutex_init(&p->phl[i]->mutex, NULL);
 		p->phl[i]->state = thinking;
 		p->phl[i]->id = i + 1;
 		p->phl[i]->fork = 0;
