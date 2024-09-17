@@ -27,33 +27,33 @@ void	*philosopher(void *philo)
 		d = 0;
 	if (p->phl[i]->state == thinking)
 	{
-		pthread_mutex_lock(&p->phl[i]->mutex);
+		pthread_mutex_lock(&p->phl[i]->fork);
 		if (d == 0)
 		{
-			p->phl[i]->fork = 1;
-			p->phl[d]->fork = 1;
+			// p->phl[i]->fork = 1;
+			// p->phl[d]->fork = 1;
 		}
 		else
 		{
-			p->phl[d]->fork = 1;
-			p->phl[i]->fork = 1;
+			// p->phl[d]->fork = 1;
+			// p->phl[i]->fork = 1;
 		}
 		printf("%d has taken a fork\n", p->phl[i]->id);
 		printf("%d has taken a fork\n", p->phl[i]->id);
 		p->phl[i]->state = eating;
 		printf("%d is eating\n", p->phl[i]->id);
-		//pthread_mutex_unlock(&p->phl[i]->mutex);
+		//pthread_mutex_unlock(&p->phl[i]->fork);
 	}
 	else if (p->phl[i]->state == eating)
 	{
-		p->phl[d]->fork = 0;
-		p->phl[i]->fork = 0;
+		// p->phl[d]->fork = 0;
+		// p->phl[i]->fork = 0;
 		p->phl[i]->state = eating;
 		printf("%d is thinking\n", p->phl[i]->id);
-		pthread_mutex_unlock(&p->phl[i]->mutex);
+		pthread_mutex_unlock(&p->phl[i]->fork);
 	}
 	// else if (p->phl[i]->state == )
-	pthread_mutex_destroy(&p->phl[i]->mutex);
+	// pthread_mutex_destroy(&p->phl[i]->fork);
 	return (p);
 
 }
@@ -61,6 +61,7 @@ void	*philosopher(void *philo)
 int	main(int argc, char **argv, char **envp)
 {	
 	struct philo	p;
+	struct timeval	ttime;
 
 	(void)envp;
 	if (argc != 5 && argc != 6)

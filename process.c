@@ -16,6 +16,8 @@ void	everinit(struct philo *p, char **av)
 	p->data = (t_data *)malloc(sizeof(t_data));
 	if (!p->data)
 		exit(EXIT_FAILURE);
+	gettimeofday(p->tmptime, NULL);
+	p->tstart= p->tmptime->tv_sec;
 	p->situation = 0;
 	p->pair = 0;
 	p->data->n_philo = talanatoi(p, av[1], 1);
@@ -43,10 +45,10 @@ void	init_phl(struct philo *p, int i)
 		p->phl[i] = (t_phl *)malloc(sizeof(t_phl));
 		if (!p->phl[i])
 			wgas(p, sstatus(p, i));
-		pthread_mutex_init(&p->phl[i]->mutex, NULL);
+		pthread_mutex_init(&p->phl[i]->fork, NULL);
 		p->phl[i]->state = thinking;
 		p->phl[i]->id = i + 1;
-		p->phl[i]->fork = 0;
+		// p->phl[i]->fork = 0;
 	}
 }
 
