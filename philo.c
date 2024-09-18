@@ -13,30 +13,29 @@
 
 void	*philosopher(void *philo)
 {
-////		j'envoie toute la structure pour pouvoir acceder aux fourchettes des autres
-////		pour savoir de quel philo on s'occupe il y a p->i qui nous donne l'index
-////			du philo dans le tableau (en commencant par 0 jusque p->data->n_philo - 1)
 	struct	philo	*p;
 	int	i;
 	int	d;
 
+	// while (1 )
 	p = (struct philo *)philo;
-	i = p->i;
-	d = i + 1;
+	p->i = 0;
+	i = 0;
+	d = p->i + 1;
 	if (d == p->data->n_philo)
 		d = 0;
 	if (p->phl[i]->state == thinking)
 	{
-		pthread_mutex_lock(&p->phl[i]->fork);
+		pthread_mutex_lock(&p->phl[i]->mtx);
 		if (d == 0)
 		{
-			// p->phl[i]->fork = 1;
-			// p->phl[d]->fork = 1;
+			p->phl[i]->fork = 1;
+			p->phl[d]->fork = 1;
 		}
 		else
 		{
-			// p->phl[d]->fork = 1;
-			// p->phl[i]->fork = 1;
+			p->phl[d]->fork = 1;
+			p->phl[i]->fork = 1;
 		}
 		printf("%d has taken a fork\n", p->phl[i]->id);
 		printf("%d has taken a fork\n", p->phl[i]->id);
@@ -46,22 +45,20 @@ void	*philosopher(void *philo)
 	}
 	else if (p->phl[i]->state == eating)
 	{
-		// p->phl[d]->fork = 0;
-		// p->phl[i]->fork = 0;
+		p->phl[d]->fork = 0;
+		p->phl[i]->fork = 0;
 		p->phl[i]->state = eating;
 		printf("%d is thinking\n", p->phl[i]->id);
-		pthread_mutex_unlock(&p->phl[i]->fork);
+		pthread_mutex_unlock(&p->phl[i]->mtx);
 	}
-	// else if (p->phl[i]->state == )
-	// pthread_mutex_destroy(&p->phl[i]->fork);
+	// else if (p->phl[i]->state == )	
+	pthread_mutex_destroy(&p->phl[i]->mtx);
 	return (p);
-
 }
 
 int	main(int argc, char **argv, char **envp)
 {	
 	struct philo	p;
-	struct timeval	ttime;
 
 	(void)envp;
 	if (argc != 5 && argc != 6)

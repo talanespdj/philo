@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 21:47:51 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/13 20:51:20 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/18 16:04:35 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PHILO_H
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <pthread.h>
 # include <sys/wait.h>
+# include <sys/time.h>
 
 typedef enum w_state
 {
@@ -51,22 +52,11 @@ typedef struct phl
 {
 	enum w_state	state;
 	pthread_t		thread;
-	pthread_mutex_t		fork;
+	pthread_mutex_t		mtx;
+	int				fork;
 	int				id;
 	long				lastteating; //combien de time qu'il n'a pas eat
 }			t_phl;
-
-// struct timeval
-// {
-// 	time_t		tv_sec;   /* seconds since Jan. 1, 1970 */
-// 	suseconds_t	tv_usec;  /* and microseconds */
-// };
-
-struct timezone
-{
-	int		tz_minuteswest; /* of Greenwich */
-	int		tz_dsttime;     /* type of dst correction to apply */
-};
 
 void				*philosopher(void *philo);
 
