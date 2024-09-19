@@ -13,10 +13,10 @@
 
 void    wasthinking(struct philo *p, int i, int d)
 {
-	if (i == p->data->n_philo)
+	if (i == p->n_philo)
 		i = 0;
 	d = i + 1;
-	if (d == p->data->n_philo)
+	if (d == p->n_philo)
 		d = 0;
 	pthread_mutex_lock(&p->phl[i]->mtx);
 	if (d == 0)

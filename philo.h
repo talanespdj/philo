@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 21:47:51 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/18 16:04:35 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/19 19:58:08 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PHILO_H
@@ -29,36 +29,32 @@ typedef enum w_state
 
 typedef struct philo
 {
-	struct phl	**phl;
-	struct data	*data;
-	struct timeval		tmptime; // time auquel tout a commencé
-	long			tstart;
-	int			situation;
-	int			pair;
-	int			i;
+	struct timeval	tmptime;
+	struct phl		**phl;
+	long			tstart; // time auquel tout a commencé
+	int				n_philo;
+	int				tt_die;
+	int				tt_eat;
+	int				tt_sleep;
+	int				meals;
+	int				situation;
+	int				pair;
+	int				i;
 }			t_philo;
-
-typedef struct data
-{
-	char		**argv;
-	int			n_philo;
-	int			n_fork;
-	int			tt_die;
-	int			tt_eat;
-	int			tt_sleep;
-}			t_data;
 
 typedef struct phl
 {
-	enum w_state	state;
-	pthread_t		thread;
+	enum w_state		state;
 	pthread_mutex_t		mtx;
-	int				fork;
-	int				id;
+	pthread_t			thread;
 	long				lastteating; //combien de time qu'il n'a pas eat
+	int					fork;
+	int					id;
 }			t_phl;
 
 void				*philosopher(void *philo);
+
+long				mtime(struct philo *p);
 
 void				everinit(struct philo *p, char **argv);
 void				init_phl(struct philo *p, int i);

@@ -16,13 +16,12 @@ void	wgas(struct philo *p, int status)
 	if (status >= 0)
 	{
 		if (status == 0)
-			free_phl(p, p->data->n_philo);
+			free_phl(p, p->n_philo);
 		else
 			free_phl(p, p->situation);
 	}
 	else if (status == -1)
 		putstrfd("verif args, must be numbers > 0\n", 2);
-	free(p->data);
 	exit(status);
 }
 
@@ -31,7 +30,7 @@ void	free_phl(struct philo *p, int d)
 	int	i;
 
 	i = -1;
-	while (++i < p->data->n_philo && i <= d)
+	while (++i < p->n_philo && i <= d)
 		free(p->phl[i]);
 	free(p->phl);
 }

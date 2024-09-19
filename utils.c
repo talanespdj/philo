@@ -6,10 +6,16 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 22:11:06 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/13 16:51:22 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/19 19:57:53 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
+
+long    mtime(struct philo *p)
+{
+	gettimeofday(&p->tmptime, NULL);
+	return ((p->tmptime.tv_usec - p->tstart));
+}
 
 void	putstrfd(char *str, int fd)
 {
