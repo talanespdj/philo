@@ -6,33 +6,24 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 22:11:06 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/19 19:57:53 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/19 23:45:45 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
 
-long    mtime(struct philo *p)
+size_t	ttime(struct philo *p)
 {
-	gettimeofday(&p->tmptime, NULL);
-	return ((p->tmptime.tv_usec - p->tstart));
+	struct timeval		t;
+
+	if (!gettimeofday(&t, NULL))
+		wgas(p, 20);
+	return ((size_t)((t.tv_usec / 1000) + (t.tv_sec * 1000)));
 }
 
 void	putstrfd(char *str, int fd)
 {
 	while (*str)
 		write(fd, str++, 1);
-}
-
-void	wthestate(enum w_state state)
-{
-	if (state == eating)
-		printf("is eating\n");
-	else if (state == sleeping)
-		printf("is sleeping\n");
-	else if (state == thinking)
-		printf("is thinking\n");
-	else if (state == died)
-		printf("died\n");
 }
 
 int	talanatoi(struct philo *p, char *str, int d)

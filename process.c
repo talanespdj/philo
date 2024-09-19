@@ -6,20 +6,23 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 22:08:26 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/19 19:57:26 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/19 23:42:50 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
 
+size_t	lasttime(struct philo *p, int i)
+{
+	size_t	t;
+
+	t = ttime(p);
+	return (t - p->phl[i]->lastteating);
+}
+
 void	everinit(struct philo *p, char **av)
 {
 	gettimeofday(&p->tmptime, NULL);
-	printf("\t\t\t\tmicrosecondes start == %ld\n", p->tmptime.tv_usec);
-	p->tstart= p->tmptime.tv_usec;
-	sleep(3);
-	gettimeofday(&p->tmptime, NULL);
-	printf("tstart == %ld, tmptime.tv_sec == %ld\n", p->tstart, p->tmptime.tv_sec);
-	printf("il y a eu un laps de temps de %ld sec\n", mtime(p) - p->tstart);
+	p->tstart = ttime(p);
 	p->situation = 0;
 	p->pair = 0;
 	p->n_philo = talanatoi(p, av[1], 1);
@@ -36,7 +39,6 @@ void	everinit(struct philo *p, char **av)
 	if (!p->phl)
 		wgas(p, -1);
 	init_phl(p, -1);
-	fill_phl(p);
 }
 
 void	init_phl(struct philo *p, int i)
@@ -52,15 +54,7 @@ void	init_phl(struct philo *p, int i)
 	}
 }
 
-void	fill_phl(struct philo *p)
-{
-	int	i;
-
-	i = -1;
-	while (++i < p->n_philo)
-	{
-		p->i = i;
-		pthread_create(&p->phl[i]->thread, NULL, &philosopher, (void *)p);
-		pthread_join(p->phl[i]->thread, NULL);
-	}
-}
+//	size_t old_c = ttime(p);
+//	usleep(10000);
+//	size_t new_c = ttime(p);
+//	printf("n-c = %zums\n", new_c - old_c);

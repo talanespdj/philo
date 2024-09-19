@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 21:47:51 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/19 19:58:08 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/19 23:46:02 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PHILO_H
@@ -31,7 +31,7 @@ typedef struct philo
 {
 	struct timeval	tmptime;
 	struct phl		**phl;
-	long			tstart; // time auquel tout a commencé
+	size_t			tstart;
 	int				n_philo;
 	int				tt_die;
 	int				tt_eat;
@@ -47,25 +47,27 @@ typedef struct phl
 	enum w_state		state;
 	pthread_mutex_t		mtx;
 	pthread_t			thread;
-	long				lastteating; //combien de time qu'il n'a pas eat
+	long				lastteating;
 	int					fork;
 	int					id;
 }			t_phl;
 
-void				*philosopher(void *philo);
-
-long				mtime(struct philo *p);
+void				*momeseno(void *philo);
 
 void				everinit(struct philo *p, char **argv);
 void				init_phl(struct philo *p, int i);
-void				fill_phl(struct philo *p);
 
+void				zzsleep(struct philo *p, int i);
+void				think(struct philo *p, int i);
+void				eat(struct philo *p, int i, int d);
+
+void				verif(struct philo *p);
 void				wgas(struct philo *p, int status);
 void				free_phl(struct philo *p, int d);
 int					sstatus(struct philo *p, int d);
 
+size_t				ttime(struct philo *p);
 void				putstrfd(char *str, int fd);
-void				wthestate(enum w_state state);
 int					talanatoi(struct philo *p, char *str, int d);
 
 #endif

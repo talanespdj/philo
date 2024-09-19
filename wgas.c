@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 22:48:11 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/13 19:40:24 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/19 23:44:21 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
@@ -22,8 +22,26 @@ void	wgas(struct philo *p, int status)
 	}
 	else if (status == -1)
 		putstrfd("verif args, must be numbers > 0\n", 2);
+	else if (status == 20)
+		putstrfd("gettimeofday failed\n", 2);
 	exit(status);
 }
+
+void	verif(struct philo *p)
+{
+	int	i;
+
+	i = 0;
+	while (1)
+	{
+		if (i == p->n_philo)
+			i = 0;
+		i++;
+	}
+}
+
+//		if (ttime - p->phl[i]->lastteating > p->tt_die)
+//			printf("%zu %d died\n", ttime, i);
 
 void	free_phl(struct philo *p, int d)
 {
