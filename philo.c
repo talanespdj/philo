@@ -56,11 +56,10 @@ void	*philosopher(void *philo)
 	return (p);
 }
 
-int	main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv)
 {	
 	struct philo	p;
 
-	(void)envp;
 	if (argc != 5 && argc != 6)
 		printf("need ./philosophers + 4 || 5 args\n");
 	else
