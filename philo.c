@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 21:47:32 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/20 19:10:44 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/20 20:55:13 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
@@ -16,13 +16,17 @@ void	philosophers(struct philo *p)
 	int	i;
 
 	i = 0;
-	pthread_create(&p->phl[0]->thread, NULL, &surveil, (void *)p);
-	while (++i < p->n_philo)
+	// pthread_create(&p->phl[0]->thread, NULL, &surveil, (void *)p);
+	// printf("le time au debut de la boucle qui cree les threads des philo%zu\n", ttime(p));
+	while (++i <= p->n_philo)
 	{
+//		pthread_mutex_lock(&p->phl[0]->mtx);
 		p->phl[0]->id = i;
+//		pthread_mutex_unlock(&p->phl[0]->mtx);
 		pthread_create(&p->phl[i]->thread, NULL, &momeseno, (void *)p->phl);
+		usleep(42);
 	}
-	printf("je sors ici oqnwdoiqnwdoiqnwd\n");
+	// printf("\n\napres tout ca%zu\n", ttime(p));
 }
 
 int	main(int argc, char **argv)
@@ -36,7 +40,10 @@ int	main(int argc, char **argv)
 		everinit(&p, argv);
 		if (p.situation)
 			wgas(&p, p.situation);
-//		philosophers(&p);
+		// printf("quoiquoiquoiquoiquoi\n");
+		// printf("le time au debut de la boucle qui cree les threads des philo%zu\n", ttime(&p));
+		// printf("le time au debut de la boucle qui cree les threads des philo\n");
+		philosophers(&p);
 		wgas(&p, 0);
 	}
 	return (0);
