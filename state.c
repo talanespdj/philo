@@ -16,9 +16,9 @@ void	eat(struct philo *p, int i, int d)
 	pthread_mutex_lock(&p->phl[i]->mtx);
 	p->phl[d]->fork = 1;
 	p->phl[i]->fork = 1;
-	printf("%d has taken a fork\n", p->phl[i]->id);
-	printf("%d has taken a fork\n", p->phl[i]->id);
-	printf("%d is eating\n", p->phl[i]->id);
+	printf("%zu %d has taken a fork\n", ttime(p), p->phl[i]->id);
+	printf("%zu %d has taken a fork\n", ttime(p), p->phl[i]->id);
+	printf("%zu %d is eating\n", ttime(p), p->phl[i]->id);
 	p->phl[i]->state = eating;
 //////		fonction pour convertir mlsec en micro
 //	usleep(function(p->tt_eat));
@@ -31,13 +31,13 @@ void	eat(struct philo *p, int i, int d)
 void	think(struct philo *p, int i)
 {
 	p->phl[i]->state = thinking;
-	printf("%d is thinking\n", p->phl[i]->id);
+	printf("%zu %d is thinking\n", ttime(p), p->phl[i]->id);
 }
 
 void	zzsleep(struct philo *p, int i)
 {
 	p->phl[i]->state = sleeping;
-	printf("%d is sleeping\n", p->phl[i]->id);
+	printf("%zu %d is sleeping\n", ttime(p),p->phl[i]->id);
 //////		fonction pour convertir mlsec en micro
 //	usleep(function(p->tt_sleep));
 }

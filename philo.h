@@ -39,7 +39,6 @@ typedef struct philo
 	int				meals;
 	int				situation;
 	int				pair;
-	int				i;
 }			t_philo;
 
 typedef struct phl
@@ -48,14 +47,22 @@ typedef struct phl
 	pthread_mutex_t		mtx;
 	pthread_t			thread;
 	long				lastteating;
+	int					tt_die;
+	int					tt_eat;
+	int					tt_sleep;
+	int					ntiate;
+	int					ntteat;
 	int					fork;
 	int					id;
 }			t_phl;
 
+void				philosophers(struct philo *p);
+
 void				*momeseno(void *philo);
+void				*surveil(void *philo);
 
 void				everinit(struct philo *p, char **argv);
-void				init_phl(struct philo *p, int i);
+void				init_phl(struct philo *p, char **av, int i);
 
 void				zzsleep(struct philo *p, int i);
 void				think(struct philo *p, int i);

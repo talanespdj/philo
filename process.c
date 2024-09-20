@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 22:08:26 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/19 23:42:50 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/20 19:11:24 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
@@ -22,7 +22,7 @@ size_t	lasttime(struct philo *p, int i)
 void	everinit(struct philo *p, char **av)
 {
 	gettimeofday(&p->tmptime, NULL);
-	p->tstart = ttime(p);
+//	p->tstart = ttime(p);
 	p->situation = 0;
 	p->pair = 0;
 	p->n_philo = talanatoi(p, av[1], 1);
@@ -38,19 +38,24 @@ void	everinit(struct philo *p, char **av)
 	p->phl = (t_phl **)malloc(sizeof(t_phl) * (p->n_philo));
 	if (!p->phl)
 		wgas(p, -1);
-	init_phl(p, -1);
+	init_phl(p, av, -1);
 }
 
-void	init_phl(struct philo *p, int i)
+void	init_phl(struct philo *p, char **av, int i)
 {
-	while (++i < p->n_philo)
+	while (++i <= p->n_philo)
 	{
 		p->phl[i] = (t_phl *)malloc(sizeof(t_phl));
 		if (!p->phl[i])
 			wgas(p, sstatus(p, i));
 		pthread_mutex_init(&p->phl[i]->mtx, NULL);
-		p->phl[i]->id = i + 1;
+		p->phl[i]->lastteating = 0;
+		p->phl[i]->ntiate = 0;
+		p->phl[i]->id = i;
 		p->phl[i]->fork = 0;
+		p->phl[i]->tt_die = talanatoi(p, av[2], 2);
+		p->phl[i]->tt_eat = talanatoi(p, av[3], 3);
+		p->phl[i]->tt_sleep = talanatoi(p, av[4], 4);
 	}
 }
 

@@ -7,6 +7,7 @@ SRC = philo.c \
 	wgas.c \
 	utils.c \
 	state.c \
+	routine.c \
 	process.c \
 
 OBJS = $(SRC:.c=.o)

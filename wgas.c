@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 22:48:11 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/19 23:44:21 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/20 19:55:35 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
@@ -48,7 +48,7 @@ void	free_phl(struct philo *p, int d)
 	int	i;
 
 	i = -1;
-	while (++i < p->n_philo && i <= d)
+	while (++i <= p->n_philo && i <= d)
 		free(p->phl[i]);
 	free(p->phl);
 }
