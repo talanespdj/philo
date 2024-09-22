@@ -53,6 +53,7 @@ typedef struct phl
 	int					ntiate;
 	int					ntteat;
 	int					fork;
+	
 	int					id;
 }			t_phl;
 

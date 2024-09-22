@@ -21,8 +21,7 @@ size_t	lasttime(struct philo *p, int i)
 
 void	everinit(struct philo *p, char **av)
 {
-	gettimeofday(&p->tmptime, NULL);
-//	p->tstart = ttime(p);
+	p->tstart = ttime(p);
 	p->situation = 0;
 	p->pair = 0;
 	p->n_philo = talanatoi(p, av[1], 1);
