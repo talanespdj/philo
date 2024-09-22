@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 21:47:51 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/19 23:46:02 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/22 22:00:09 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PHILO_H
@@ -43,10 +43,12 @@ typedef struct philo
 
 typedef struct phl
 {
-	enum w_state		state;
 	pthread_mutex_t		mtx;
+	enum w_state		state;
+	struct phl		*right_phl;
 	pthread_t			thread;
 	long				lastteating;
+	int					id;
 	int					tt_die;
 	int					tt_eat;
 	int					tt_sleep;
@@ -54,7 +56,6 @@ typedef struct phl
 	int					ntteat;
 	int					fork;
 	
-	int					id;
 }			t_phl;
 
 void				philosophers(struct philo *p);

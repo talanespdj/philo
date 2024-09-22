@@ -16,7 +16,7 @@ void	wgas(struct philo *p, int status)
 	int	i = -1;
 	
 ///////////// doit seulement attendre les threads s'ils ont tous ete crees
-	while (++i <= p->n_philo)
+	while (++i < p->n_philo)
 	{
 		pthread_join(p->phl[i]->thread, NULL);
 		pthread_mutex_destroy(&p->phl[i]->mtx);
@@ -57,7 +57,7 @@ void	free_phl(struct philo *p, int d)
 	int	i;
 
 	i = -1;
-	while (++i <= p->n_philo && i <= d)
+	while (++i < p->n_philo && i <= d)
 		free(p->phl[i]);
 	free(p->phl);
 }

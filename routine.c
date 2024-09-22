@@ -6,23 +6,19 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 17:56:42 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/22 18:45:23 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/22 22:28:04 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
 
-void	*momeseno(void *phl)
+void	*momeseno(void *philo)
 {
-	struct phl	**philo;
+	struct phl	*phl;
 	int				i;
-	int				d;
 
-	philo = (struct phl **)phl;
-	i = philo[0]->id;
-	d = i + 1;
-	if (!philo[d])
-		d = 1;
-	printf("%d\n", philo[0]->id);
+	phl = (struct phl *)philo;
+	i = phl->id;
+	printf("%d\n", phl->right_phl->fork);
 //	while (le philo n'est pas mort)
 //	{
 // 		choisir l'etat dans lequel il sera
@@ -32,6 +28,7 @@ void	*momeseno(void *phl)
 //	}
 	return (NULL);
 }
+
 void	*surveil(void *philo)
 {
 	struct philo	*p;
