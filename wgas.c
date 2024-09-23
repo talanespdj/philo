@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 22:48:11 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/23 15:49:19 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/23 19:39:16 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
@@ -19,8 +19,10 @@ void	wgas(struct philo *p, int status)
 	while (++i < p->n_philo)
 	{
 		pthread_join(p->phl[i]->thread, NULL);
-		pthread_mutex_destroy(p->phl[i]->fork->mtx);
+		pthread_mutex_destroy(&p->phl[i]->fork.mtx);
 	}
+////	if (status == 999)
+////		un philo est mort de faim il faut l'ennoncer
 	if (status >= 0)
 	{
 		if (status == 0)

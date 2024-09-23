@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 17:56:42 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/23 15:48:16 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/23 19:57:01 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
@@ -18,8 +18,7 @@ void	*momeseno(void *philo)
 
 	phl = (struct phl *)philo;
 	i = phl->id;
-	i = i - 3 + 3;
-//	printf("%d\n", phl->right_phl->fork);
+//	printf("[%d]\t, je pointe sur thread // [%d]\n", phl->fork.id, phl->r_fork->id); 
 //	while (le philo n'est pas mort)
 //	{
 // 		choisir l'etat dans lequel il sera
@@ -40,11 +39,11 @@ void	*surveil(void *philo)
 	p = (struct philo *)philo;
 	while (1)
 	{
-		if (i > p->n_philo)
-			i = 1;
+		if (i == p->n_philo)
+			i = 0;
 		t = ttime() - p->phl[i]->lastteating;
 		if (t > p->tt_die)
-			wgas(p, sstatus(p, 999));
+//			return ((void)i);
 		i++;
 	}
 	return (NULL);

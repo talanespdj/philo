@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 21:47:51 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/23 16:53:09 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/23 19:41:56 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PHILO_H
@@ -27,14 +27,16 @@ typedef enum w_state
 
 typedef struct fork
 {
-	pthread_mutex_t		*mtx;
+	pthread_mutex_t		mtx;
 	enum w_state		state;
+	int					id;
 }			t_fork;
 
 typedef struct philo
 {
 	struct phl		**phl;
 	size_t			tstart;
+	pthread_t			thread;
 	int				n_philo;
 	int				tt_die;
 	int				tt_eat;
@@ -47,7 +49,7 @@ typedef struct philo
 typedef struct phl
 {
 	pthread_t			thread;
-	struct fork				*fork;
+	struct fork				fork;
 	struct fork				*r_fork;
 	int					id;
 	int					tt_die;
