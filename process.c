@@ -6,14 +6,16 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 22:08:26 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/23 19:50:56 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/23 20:58:23 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
 
 void	everinit(struct philo *p, char **av)
 {
-	p->tstart = ttime();
+	struct timeval		t;
+	gettimeofday(&t, NULL);;
+	p->tstart = t.tv_usec;
 	p->pair = 0;
 	p->situation = 0;
 	p->n_philo = talanatoi(p, av[1], 1);
@@ -29,15 +31,11 @@ void	everinit(struct philo *p, char **av)
 	p->phl = (t_phl **)malloc(sizeof(t_phl *) * (p->n_philo));
 	if (!p->phl)
 		wgas(p, -1);
-	fill_phl(p, av);
+	fill_phl(p, av, -1);
 }
 
-void	fill_phl(struct philo *p, char **av)
+void	fill_phl(struct philo *p, char **av, int i)
 {
-	int		i;
-
-	i = -1;
-	printf("QOWIJDQOIWJDOQIWD\n");
 	while (++i < p->n_philo)
 	{
 		p->phl[i] = (t_phl *)malloc(sizeof(t_phl));
@@ -50,7 +48,7 @@ void	fill_phl(struct philo *p, char **av)
 			p->phl[i]->ntteat = p->ntteat;
 		p->phl[i]->fork.id = i;
 		p->phl[i]->ntiate = 0;
-		p->phl[i]->lastteating = 0;
+		p->phl[i]->lastteating = p->tstart;
 		pthread_mutex_init(&p->phl[i]->fork.mtx, NULL);
 	}
 	i = -1;
@@ -68,16 +66,27 @@ size_t	ttime(void)
 	struct timeval		t;
 
 	gettimeofday(&t, NULL);
-	return ((size_t)((t.tv_usec / 1000) + (t.tv_sec * 1000)));
+	return ((t.tv_sec * 1000) + (t.tv_usec / 1000));
+	// return ((size_t)((t.tv_usec / 1000) + (t.tv_sec * 1000)));
 }
 
-size_t	lasttime(t_phl phl)
+void	tusleep(size_t mls)
+{
+	size_t	start;
+
+	start = ttime();
+	while ((ttime() - start) < mls)
+		usleep(500);
+}
+
+
+/*size_t	reset_time(t_phl phl)
 {
 	size_t	t;
 
 	t = ttime();
 	return (t - phl.lastteating);
-}
+}*/
 
 void	putstrfd(char *str, int fd)
 {

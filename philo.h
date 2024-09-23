@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 21:47:51 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/23 19:41:56 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/23 21:18:03 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PHILO_H
@@ -38,9 +38,9 @@ typedef struct philo
 	size_t			tstart;
 	pthread_t			thread;
 	int				n_philo;
-	int				tt_die;
-	int				tt_eat;
-	int				tt_sleep;
+	size_t				tt_die;
+	size_t				tt_eat;
+	size_t				tt_sleep;
 	int				ntteat;
 	int				situation;
 	int				pair;
@@ -66,8 +66,9 @@ void				*momeseno(void *philo);
 void				*surveil(void *philo);
 
 void				everinit(struct philo *p, char **argv);
-void				fill_phl(struct philo *p, char **av);
-size_t				ttime(void);
+void				fill_phl(struct philo *p, char **av, int i);
+size_t				ttime();
+void				tusleep(size_t mls);
 size_t				lasttime(t_phl phl);
 void				putstrfd(char *str, int fd);
 

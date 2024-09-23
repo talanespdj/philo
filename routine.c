@@ -6,10 +6,11 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 17:56:42 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/23 19:57:01 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/23 20:34:41 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
+#include <stdint.h>
 
 void	*momeseno(void *philo)
 {
@@ -33,17 +34,21 @@ void	*surveil(void *philo)
 {
 	struct philo	*p;
 	int				i;
-	int				t;
+	size_t				t;
 
 	i = 1;
 	p = (struct philo *)philo;
-	while (1)
+	while (i < p->n_philo + 1)
 	{
 		if (i == p->n_philo)
 			i = 0;
 		t = ttime() - p->phl[i]->lastteating;
 		if (t > p->tt_die)
-//			return ((void)i);
+		{
+			tusleep(10000);
+			printf("%zu %d died\n", ttime(), i);
+			return (NULL);
+		}
 		i++;
 	}
 	return (NULL);
