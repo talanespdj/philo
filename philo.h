@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 21:47:51 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/22 22:00:09 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/23 16:53:09 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PHILO_H
@@ -46,9 +46,9 @@ typedef struct philo
 
 typedef struct phl
 {
-	pthread_mutex_t		mtx;
 	pthread_t			thread;
-	int					fork;
+	struct fork				fork;
+	struct fork				*r_fork;
 	int					id;
 	int					tt_die;
 	int					tt_eat;

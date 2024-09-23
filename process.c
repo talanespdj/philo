@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 22:08:26 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/23 15:50:24 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/23 16:05:59 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
@@ -14,8 +14,8 @@
 void	everinit(struct philo *p, char **av)
 {
 	p->tstart = ttime();
-	p->situation = 0;
 	p->pair = 0;
+	p->situation = 0;
 	p->n_philo = talanatoi(p, av[1], 1);
 	p->tt_die = talanatoi(p, av[2], 2);
 	p->tt_eat = talanatoi(p, av[3], 3);
