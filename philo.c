@@ -37,7 +37,7 @@ int	main(int argc, char **argv)
 		everinit(&p, argv);
 		if (p.situation)
 			wgas(&p, p.situation);
-		philosophers(&p);
+//		philosophers(&p);
 		wgas(&p, 0);
 	}
 	return (0);

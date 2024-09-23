@@ -14,11 +14,12 @@
 void	*momeseno(void *philo)
 {
 	struct phl	*phl;
-	int				i;
+	int	i;
 
 	phl = (struct phl *)philo;
 	i = phl->id;
-	printf("%d\n", phl->right_phl->fork);
+	i = i - 3 + 3;
+//	printf("%d\n", phl->right_phl->fork);
 //	while (le philo n'est pas mort)
 //	{
 // 		choisir l'etat dans lequel il sera
