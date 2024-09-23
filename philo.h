@@ -21,22 +21,25 @@
 
 typedef enum w_state
 {
-	eating,
-	sleeping,
-	thinking,
-	died,
+	available,
+	unavailable,
 }		t_state;
+
+typedef struct fork
+{
+	pthread_mutex_t		*fork;
+	enum w_state		state;
+}			t_fork;
 
 typedef struct philo
 {
-	struct timeval	tmptime;
 	struct phl		**phl;
 	size_t			tstart;
 	int				n_philo;
 	int				tt_die;
 	int				tt_eat;
 	int				tt_sleep;
-	int				meals;
+	int				ntteat;
 	int				situation;
 	int				pair;
 }			t_philo;
@@ -44,18 +47,15 @@ typedef struct philo
 typedef struct phl
 {
 	pthread_mutex_t		mtx;
-	enum w_state		state;
-	struct phl		*right_phl;
 	pthread_t			thread;
-	long				lastteating;
+	int					fork;
 	int					id;
 	int					tt_die;
 	int					tt_eat;
 	int					tt_sleep;
 	int					ntiate;
 	int					ntteat;
-	int					fork;
-	
+	long				lastteating;
 }			t_phl;
 
 void				philosophers(struct philo *p);
@@ -64,19 +64,19 @@ void				*momeseno(void *philo);
 void				*surveil(void *philo);
 
 void				everinit(struct philo *p, char **argv);
-void				init_phl(struct philo *p, char **av, int i);
+void				fill_phl(struct philo *p, char **av);
+size_t				ttime(void);
+size_t				lasttime(t_phl phl);
+void				putstrfd(char *str, int fd);
 
 void				zzsleep(struct philo *p, int i);
 void				think(struct philo *p, int i);
 void				eat(struct philo *p, int i, int d);
 
-void				verif(struct philo *p);
 void				wgas(struct philo *p, int status);
-void				free_phl(struct philo *p, int d);
+void				fphl(struct philo *p, int d);
 int					sstatus(struct philo *p, int d);
 
-size_t				ttime(struct philo *p);
-void				putstrfd(char *str, int fd);
 int					talanatoi(struct philo *p, char *str, int d);
 
 #endif

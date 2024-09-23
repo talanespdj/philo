@@ -3,11 +3,12 @@ https://www.geeksforgeeks.org/condition-wait-signal-multi-threading/?ref=next_ar
 
 https://www.youtube.com/playlist?list=PLfqABt5AS4FmuQf70psXrsMLEDQXNkLq2
 
-[ ]= relire le sujet pour bien comprendre ce qui est demande
+[✅]= relire le sujet pour bien comprendre ce qui est demande
 
+[ ]= finir la fonction routine momeseno pour quelle tourne en boucle
 
-[ ] = apprendre a quoi servent les thread, quelle utilitee + se renseigner sur les differentes fonctions autorisees
-	faire de meme pour les mutex
+[ ]= finir la fonction surveil qui vient superviser en boucle si la derniere fois qu'il a mange > tt_die
+		ttime() - phl[n]->lastteating
 
 	usleep // gettimeofday // pthread_create // pthread_detach // pthread_join // pthread_mutex_init 
 		pthread_mutex_destroy //pthread_mutex_lock // pthread_mutex_unlock

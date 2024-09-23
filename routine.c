@@ -42,10 +42,13 @@ void	*surveil(void *philo)
 	{
 		if (i > p->n_philo)
 			i = 1;
-		t = ttime(p) - p->phl[i]->lastteating;
+		t = ttime() - p->phl[i]->lastteating;
 		if (t > p->tt_die)
 			wgas(p, sstatus(p, 999));
 		i++;		
 	}
 	return (NULL);
 }
+
+//		if (ttime - p->phl[i]->lastteating > p->tt_die)
+//			printf("%zu %d died\n", ttime, i);

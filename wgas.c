@@ -25,9 +25,9 @@ void	wgas(struct philo *p, int status)
 	if (status >= 0)
 	{
 		if (status == 0)
-			free_phl(p, p->n_philo);
+			fphl(p, p->n_philo);
 		else
-			free_phl(p, p->situation);
+			fphl(p, p->situation);
 	}
 	else if (status == -1)
 		putstrfd("verif args, must be numbers > 0\n", 2);
@@ -36,23 +36,7 @@ void	wgas(struct philo *p, int status)
 	exit(status);
 }
 
-void	verif(struct philo *p)
-{
-	int	i;
-
-	i = 0;
-	while (1)
-	{
-		if (i == p->n_philo)
-			i = 0;
-		i++;
-	}
-}
-
-//		if (ttime - p->phl[i]->lastteating > p->tt_die)
-//			printf("%zu %d died\n", ttime, i);
-
-void	free_phl(struct philo *p, int d)
+void	fphl(struct philo *p, int d)
 {
 	int	i;
 

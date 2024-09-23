@@ -13,7 +13,7 @@
 
 void	philosophers(struct philo *p)
 {
-	size_t		laps = ttime(p);
+	size_t		laps = ttime();
 	int	i = -1;
 
 //	pthread_create(&p->phl[0]->thread, NULL, &surveil, (void *)p);
@@ -23,7 +23,7 @@ void	philosophers(struct philo *p)
 		pthread_create(&p->phl[i]->thread, NULL, &momeseno, (void *)p->phl[i]);
 		usleep(84);
 	}
-	printf("\t\t%zu\n", ttime(p) - laps);
+	printf("\t\t%zu\n", ttime() - laps);
 }
 
 int	main(int argc, char **argv)
@@ -37,7 +37,7 @@ int	main(int argc, char **argv)
 		everinit(&p, argv);
 		if (p.situation)
 			wgas(&p, p.situation);
-//		philosophers(&p);
+		philosophers(&p);
 		wgas(&p, 0);
 	}
 	return (0);

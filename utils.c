@@ -11,20 +11,6 @@
 /* ************************************************************************** */
 #include "philo.h"
 
-size_t	ttime(struct philo *p)
-{
-	struct timeval		t;
-
-	if (gettimeofday(&t, NULL) != 0)
-		wgas(p, 20);
-	return ((size_t)((t.tv_usec / 1000) + (t.tv_sec * 1000)));
-}
-
-void	putstrfd(char *str, int fd)
-{
-	while (*str)
-		write(fd, str++, 1);
-}
 
 int	talanatoi(struct philo *p, char *str, int d)
 {
