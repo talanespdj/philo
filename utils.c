@@ -6,11 +6,10 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 22:11:06 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/20 17:49:36 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/23 15:50:43 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
-
 
 int	talanatoi(struct philo *p, char *str, int d)
 {

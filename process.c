@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 22:08:26 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/22 22:25:34 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/23 15:50:24 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
@@ -47,7 +47,7 @@ void	fill_phl(struct philo *p, char **av)
 		p->phl[i]->tt_eat = p->tt_eat;
 		p->phl[i]->tt_sleep = p->tt_die;
 		if (av[5])
-			p->phl[i]->ntteat  = p->ntteat;
+			p->phl[i]->ntteat = p->ntteat;
 		p->phl[i]->id = i;
 		p->phl[i]->fork = 0;
 		p->phl[i]->ntiate = 0;

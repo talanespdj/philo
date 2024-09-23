@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 18:46:07 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/19 23:36:37 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/23 15:48:28 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
@@ -33,6 +33,6 @@ void	think(struct philo *p, int i)
 
 void	zzsleep(struct philo *p, int i)
 {
-	printf("%zu %d is sleeping\n", ttime(),p->phl[i]->id);
+	printf("%zu %d is sleeping\n", ttime(), p->phl[i]->id);
 	usleep(p->tt_sleep);
 }

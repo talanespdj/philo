@@ -6,16 +6,18 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 21:47:32 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/22 22:26:01 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/23 15:50:05 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
 
 void	philosophers(struct philo *p)
 {
-	size_t		laps = ttime();
-	int	i = -1;
+	size_t		laps;
+	int			i;
 
+	i = -1;
+	laps = ttime();
 //	pthread_create(&p->phl[0]->thread, NULL, &surveil, (void *)p);
 //	while (1)
 	while (++i < p->n_philo)

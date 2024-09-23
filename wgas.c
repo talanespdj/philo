@@ -6,22 +6,21 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 22:48:11 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/22 18:50:09 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/23 15:49:19 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
 
 void	wgas(struct philo *p, int status)
 {
-	int	i = -1;
-	
+	int	i;
 ///////////// doit seulement attendre les threads s'ils ont tous ete crees
+	i = -1;
 	while (++i < p->n_philo)
 	{
 		pthread_join(p->phl[i]->thread, NULL);
 		pthread_mutex_destroy(&p->phl[i]->mtx);
 	}
-	// }
 	if (status >= 0)
 	{
 		if (status == 0)

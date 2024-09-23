@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 17:56:42 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/22 22:28:04 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/23 15:48:16 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
@@ -14,7 +14,7 @@
 void	*momeseno(void *philo)
 {
 	struct phl	*phl;
-	int	i;
+	int			i;
 
 	phl = (struct phl *)philo;
 	i = phl->id;
@@ -33,8 +33,8 @@ void	*momeseno(void *philo)
 void	*surveil(void *philo)
 {
 	struct philo	*p;
-	int			i;
-	int			t;
+	int				i;
+	int				t;
 
 	i = 1;
 	p = (struct philo *)philo;
@@ -45,7 +45,7 @@ void	*surveil(void *philo)
 		t = ttime() - p->phl[i]->lastteating;
 		if (t > p->tt_die)
 			wgas(p, sstatus(p, 999));
-		i++;		
+		i++;
 	}
 	return (NULL);
 }
