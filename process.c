@@ -42,16 +42,24 @@ void	fill_phl(struct philo *p, char **av)
 		p->phl[i] = (t_phl *)malloc(sizeof(t_phl));
 		if (!p->phl[i])
 			wgas(p, sstatus(p, i));
-		pthread_mutex_init(&p->phl[i]->mtx, NULL);
+		pthread_mutex_init(p->phl[i]->fork->mtx, NULL);
 		p->phl[i]->tt_die = p->tt_die;
 		p->phl[i]->tt_eat = p->tt_eat;
 		p->phl[i]->tt_sleep = p->tt_die;
 		if (av[5])
 			p->phl[i]->ntteat = p->ntteat;
 		p->phl[i]->id = i;
-		p->phl[i]->fork = 0;
+		// p->phl[i]->fork = 0;
 		p->phl[i]->ntiate = 0;
 		p->phl[i]->lastteating = 0;
+	}
+	i = -1;
+	while (++i < p->n_philo)
+	{
+		if (i == p->n_philo - 1)
+			p->phl[i]->r_fork = p->phl[0]->fork;
+		else
+			p->phl[i]->r_fork = p->phl[i + 1]->fork;
 	}
 }
 

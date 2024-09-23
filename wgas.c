@@ -19,7 +19,7 @@ void	wgas(struct philo *p, int status)
 	while (++i < p->n_philo)
 	{
 		pthread_join(p->phl[i]->thread, NULL);
-		pthread_mutex_destroy(&p->phl[i]->mtx);
+		pthread_mutex_destroy(p->phl[i]->fork->mtx);
 	}
 	if (status >= 0)
 	{

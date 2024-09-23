@@ -27,7 +27,7 @@ typedef enum w_state
 
 typedef struct fork
 {
-	pthread_mutex_t		*fork;
+	pthread_mutex_t		*mtx;
 	enum w_state		state;
 }			t_fork;
 
@@ -47,7 +47,7 @@ typedef struct philo
 typedef struct phl
 {
 	pthread_t			thread;
-	struct fork				fork;
+	struct fork				*fork;
 	struct fork				*r_fork;
 	int					id;
 	int					tt_die;
