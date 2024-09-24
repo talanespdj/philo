@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 21:47:51 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/23 21:18:03 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/24 17:54:56 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PHILO_H
@@ -25,6 +25,12 @@ typedef enum w_state
 	unavailable,
 }		t_state;
 
+typedef enum w_health
+{
+	alive,
+	dead,
+}		t_health;
+
 typedef struct fork
 {
 	pthread_mutex_t		mtx;
@@ -35,20 +41,21 @@ typedef struct fork
 typedef struct philo
 {
 	struct phl		**phl;
-	size_t			tstart;
-	pthread_t			thread;
+	time_t			tstart;
 	pthread_mutex_t		write_mtx;
+	pthread_t			thread;
 	int				n_philo;
-	size_t				tt_die;
-	size_t				tt_eat;
-	size_t				tt_sleep;
-	int				ntteat;
+	time_t				tt_die;
+	time_t				tt_eat;
+	time_t				tt_sleep;
 	int				situation;
+	int				ntteat;
 	int				pair;
 }			t_philo;
 
 typedef struct phl
 {
+	enum w_health			health;
 	pthread_t			thread;
 	struct fork				fork;
 	struct fork				*r_fork;
@@ -68,9 +75,9 @@ void				*surveil(void *philo);
 
 void				everinit(struct philo *p, char **argv);
 void				fill_phl(struct philo *p, char **av, int i);
-size_t				ttime();
-void				tusleep(size_t mls);
-size_t				lasttime(t_phl phl);
+time_t				ttime(struct philo *p);
+void				tusleep(time_t mls);
+time_t				pc_time(void);
 void				putstrfd(char *str, int fd);
 
 void				zzsleep(struct philo *p, int i);

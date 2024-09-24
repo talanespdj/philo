@@ -8,7 +8,7 @@ https://www.youtube.com/playlist?list=PLfqABt5AS4FmuQf70psXrsMLEDQXNkLq2
 [ ]= finir la fonction routine momeseno pour quelle tourne en boucle
 
 [ ]= finir la fonction surveil qui vient superviser en boucle si la derniere fois qu'il a mange > tt_die
-		ttime() - phl[n]->lastteating
+		ttime(p) - phl[n]->lastteating
 
 	usleep // gettimeofday // pthread_create // pthread_detach // pthread_join // pthread_mutex_init 
 		pthread_mutex_destroy //pthread_mutex_lock // pthread_mutex_unlock
