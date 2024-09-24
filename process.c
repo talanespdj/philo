@@ -14,6 +14,7 @@
 void	everinit(struct philo *p, char **av)
 {
 	struct timeval		t;
+	
 	gettimeofday(&t, NULL);;
 	p->tstart = t.tv_usec;
 	p->pair = 0;
@@ -24,6 +25,7 @@ void	everinit(struct philo *p, char **av)
 	p->tt_sleep = talanatoi(p, av[4], 4);
 	if (av[5])
 		p->ntteat = talanatoi(p, av[5], 5);
+	pthread_mutex_init(&p->write_mtx, NULL);
 	if (p->situation == 42)
 		wgas(p, -1);
 	if (p->n_philo % 2 == 0)
@@ -32,6 +34,7 @@ void	everinit(struct philo *p, char **av)
 	if (!p->phl)
 		wgas(p, -1);
 	fill_phl(p, av, -1);
+
 }
 
 void	fill_phl(struct philo *p, char **av, int i)

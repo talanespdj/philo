@@ -23,7 +23,7 @@ void	philosophers(struct philo *p)
 	while (++i < p->n_philo)
 		pthread_create(&p->phl[i]->thread, NULL, &momeseno, (void *)p->phl[i]);
 	pthread_join(p->thread, NULL);
-	// printf("\t\t%zu\n", ttime() - laps);
+	printf("\t\t%zu\n", ttime() - laps);
 }
 
 int	main(int argc, char **argv)
@@ -34,6 +34,7 @@ int	main(int argc, char **argv)
 		printf("need ./philo + 4 || 5 args\n");
 	else
 	{
+		printf("oiadoizandoianz\n");
 		everinit(&p, argv);
 		if (p.situation)
 			wgas(&p, p.situation);

@@ -15,10 +15,12 @@
 void	*momeseno(void *philo)
 {
 	struct phl	*phl;
-	int			i;
+	// int			i = 0;
 
 	phl = (struct phl *)philo;
-	i = phl->id;
+	if (phl->id)
+		return (NULL);
+	// i = phl->id;
 //	printf("[%d]\t, je pointe sur thread // [%d]\n", phl->fork.id, phl->r_fork->id); 
 //	while (le philo n'est pas mort)
 //	{
@@ -45,7 +47,6 @@ void	*surveil(void *philo)
 		t = ttime() - p->phl[i]->lastteating;
 		if (t > p->tt_die)
 		{
-			tusleep(10000);
 			printf("%zu %d died\n", ttime(), i);
 			return (NULL);
 		}

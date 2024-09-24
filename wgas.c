@@ -23,6 +23,7 @@ void	wgas(struct philo *p, int status)
 	}
 ////	if (status == 999)
 ////		un philo est mort de faim il faut l'ennoncer
+	pthread_mutex_destroy(&p->write_mtx);
 	if (status >= 0)
 	{
 		if (status == 0)

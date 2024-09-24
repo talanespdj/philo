@@ -37,6 +37,7 @@ typedef struct philo
 	struct phl		**phl;
 	size_t			tstart;
 	pthread_t			thread;
+	pthread_mutex_t		write_mtx;
 	int				n_philo;
 	size_t				tt_die;
 	size_t				tt_eat;
