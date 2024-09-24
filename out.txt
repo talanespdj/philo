@@ -1,0 +1,205 @@
+0 3 is thinking
+0 3 has taken a fork
+0 3 has taken a fork
+0 3 is eating
+0 2 is thinking
+0 1 is thinking
+0 1 has taken a fork
+0 1 has taken a fork
+0 1 is eating
+0 7 is thinking
+0 12 is thinking
+0 12 has taken a fork
+0 12 has taken a fork
+0 12 is eating
+0 7 has taken a fork
+0 7 has taken a fork
+0 7 is eating
+0 8 is thinking
+0 8 has taken a fork
+0 6 is thinking
+0 4 is thinking
+0 4 has taken a fork
+0 9 is thinking
+0 9 has taken a fork
+0 11 is thinking
+0 10 is thinking
+0 10 has taken a fork
+0 5 is thinking
+0 5 has taken a fork
+0 13 is thinking
+0 13 has taken a fork
+0 14 is thinking
+0 14 has taken a fork
+0 15 is thinking
+0 15 has taken a fork
+0 16 is thinking
+0 16 has taken a fork
+0 17 is thinking
+0 17 has taken a fork
+0 18 is thinking
+0 18 has taken a fork
+0 19 is thinking
+0 19 has taken a fork
+0 20 is thinking
+160 1 is sleeping
+160 20 has taken a fork
+160 7 is sleeping
+160 6 has taken a fork
+160 3 is sleeping
+160 8 has taken a fork
+160 8 is eating
+160 2 has taken a fork
+160 2 has taken a fork
+160 2 is eating
+160 4 has taken a fork
+160 4 is eating
+160 12 is sleeping
+160 13 has taken a fork
+160 13 is eating
+160 11 has taken a fork
+320 2 is sleeping
+320 13 is sleeping
+320 4 is sleeping
+320 5 has taken a fork
+320 5 is eating
+320 14 has taken a fork
+320 14 is eating
+320 8 is sleeping
+320 9 has taken a fork
+320 9 is eating
+405 11 died
+JE SORS CA C'est DIE
+480 14 is sleeping
+480 15 has taken a fork
+480 15 is eating
+480 9 is sleeping
+480 10 has taken a fork
+480 10 is eating
+480 5 is sleeping
+480 6 has taken a fork
+480 6 is eating
+564 3 is thinking
+564 3 has taken a fork
+564 3 has taken a fork
+564 3 is eating
+564 1 is thinking
+564 1 has taken a fork
+564 7 is thinking
+564 7 has taken a fork
+640 15 is sleeping
+640 10 is sleeping
+640 16 has taken a fork
+640 16 is eating
+640 11 has taken a fork
+640 11 is eating
+640 6 is sleeping
+640 7 has taken a fork
+640 7 is eating
+724 3 is sleeping
+724 13 is thinking
+724 13 has taken a fork
+724 2 is thinking
+724 8 is thinking
+724 2 has taken a fork
+724 8 has taken a fork
+724 13 has taken a fork
+724 4 is thinking
+724 4 has taken a fork
+724 4 has taken a fork
+724 4 is eating
+724 13 is eating
+800 11 is sleeping
+800 7 is sleeping
+800 8 has taken a fork
+800 8 is eating
+800 16 is sleeping
+800 17 has taken a fork
+800 17 is eating
+884 5 is thinking
+884 5 has taken a fork
+884 4 is sleeping
+884 5 has taken a fork
+884 5 is eating
+884 13 is sleeping
+884 9 is thinking
+884 9 has taken a fork
+884 14 is thinking
+884 14 has taken a fork
+884 14 has taken a fork
+884 14 is eating
+960 17 is sleeping
+960 18 has taken a fork
+960 18 is eating
+960 8 is sleeping
+960 9 has taken a fork
+960 9 is eating
+1044 15 is thinking
+1044 15 has taken a fork
+1044 6 is thinking
+1044 6 has taken a fork
+1044 14 is sleeping
+1044 15 has taken a fork
+1044 15 is eating
+1044 5 is sleeping
+1044 10 is thinking
+1044 10 has taken a fork
+1044 6 has taken a fork
+1044 6 is eating
+1120 18 is sleeping
+1120 19 has taken a fork
+1120 19 is eating
+1120 9 is sleeping
+1120 10 has taken a fork
+1120 10 is eating
+1128 3 is thinking
+1128 3 has taken a fork
+1204 11 is thinking
+1204 11 has taken a fork
+1204 15 is sleeping
+1204 7 is thinking
+1204 7 has taken a fork
+1204 6 is sleeping
+1204 7 has taken a fork
+1204 7 is eating
+1204 16 is thinking
+1204 16 has taken a fork
+1204 16 has taken a fork
+1204 16 is eating
+1280 19 is sleeping
+1280 20 has taken a fork
+1280 20 is eating
+1280 10 is sleeping
+1280 11 has taken a fork
+1280 11 is eating
+1288 13 is thinking
+1288 13 has taken a fork
+1288 13 has taken a fork
+1288 13 is eating
+1288 4 is thinking
+1288 4 has taken a fork
+1364 8 is thinking
+1364 8 has taken a fork
+1364 17 is thinking
+1364 17 has taken a fork
+1364 16 is sleeping
+1364 7 is sleeping
+1364 17 has taken a fork
+1364 17 is eating
+1364 8 has taken a fork
+1364 8 is eating
+1440 20 is sleeping
+1440 1 has taken a fork
+1440 1 is eating
+1440 11 is sleeping
+1448 13 is sleeping
+1448 5 is thinking
+1448 5 has taken a fork
+1448 14 is thinking
+1448 14 has taken a fork
+1448 14 has taken a fork
+1448 14 is eating
+1524 17 is sleeping
+1524 18 is thinking
+1524 18 has taken a fork
+1524 18 h

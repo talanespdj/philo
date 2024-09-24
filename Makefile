@@ -2,7 +2,7 @@ NAME = philo
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -pthread -O3 -g3 
 
-CFLAGS += -Wno-unused-but-set-variable
+#CFLAGS += -Wno-unused-but-set-variable
 #CFLAGS += -fsanitize=thread
 
 SRC = philo.c \

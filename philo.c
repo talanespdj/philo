@@ -21,6 +21,7 @@ void	philosophers(struct philo *p)
 	while (++i < p->n_philo)
 		pthread_create(&p->phl[i]->thread, NULL, &momeseno, (void *)p->phl[i]);
 	pthread_join(p->thread, NULL);
+	printf("JE SORS CA C'est DIE\n");
 }
 
 int	main(int argc, char **argv)

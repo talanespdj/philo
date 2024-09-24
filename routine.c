@@ -17,16 +17,17 @@ void	*momeseno(void *philo)
 	struct phl	*phl;
 
 	phl = (struct phl *)philo;
+	// if phl->id est impair
+		// tusleep(84)
 	// printf("[%d]\t, je pointe sur thread // [%d]\n", phl->fork.id, phl->r_fork->id); 
 	while (phl->health == alive)
 	{
-		think(phl, phl->i);
-		eat(phl, phl->i);
-		zzsleep(phl, phl->i);
-		// choisir l etat dans lequel il sera
-		// void	zzsleep(struct philo *p, int i);
-		// void	think(struct philo *p, int i);
-		// void	eat(struct philo *p, int i);
+		if (phl->health == dead)
+			printf("%zu %d JE SUIS DEAD\n", ttime(phl->tstart), phl->id);
+		think(phl);
+		if (phl->ntteat != -1 && phl->ntiate != phl->ntteat)
+			eat(phl);
+		zzsleep(phl);
 	}
 	return (NULL);
 }
@@ -43,10 +44,11 @@ void	*surveil(void *philo)
 	{
 		if (i == p->n_philo)
 			i = 0;
-		t = ttime(p) - p->phl[i]->lastteating;
+		t = ttime(p->tstart) - p->phl[i]->lastteating;
 		if (t > p->tt_die)
 		{
-			printf("%zu %d died\n", ttime(p), i);
+			p->phl[i]->health = dead;
+			printf("%zu %d died\n", ttime(p->tstart), i);
 			return (NULL);
 		}
 	}

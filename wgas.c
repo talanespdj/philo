@@ -21,8 +21,6 @@ void	wgas(struct philo *p, int status)
 		pthread_join(p->phl[i]->thread, NULL);
 		pthread_mutex_destroy(&p->phl[i]->fork.mtx);
 	}
-////	if (status == 999)
-////		un philo est mort de faim il faut l'ennoncer
 	pthread_mutex_destroy(&p->write_mtx);
 	if (status >= 0)
 	{

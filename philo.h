@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 21:47:51 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/24 17:54:56 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/24 22:34:38 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PHILO_H
@@ -65,8 +65,10 @@ typedef struct phl
 	int					tt_sleep;
 	int					ntiate;
 	int					ntteat;
-	long				lastteating;
+	time_t					tstart;
+	time_t					lastteating;
 }			t_phl;
+
 
 void				philosophers(struct philo *p);
 
@@ -75,14 +77,14 @@ void				*surveil(void *philo);
 
 void				everinit(struct philo *p, char **argv);
 void				fill_phl(struct philo *p, char **av, int i);
-time_t				ttime(struct philo *p);
+time_t				ttime(time_t tstart);
 void				tusleep(time_t mls);
 time_t				pc_time(void);
 void				putstrfd(char *str, int fd);
 
-void				zzsleep(struct philo *p, int i);
-void				think(struct philo *p, int i);
-void				eat(struct philo *p, int i);
+void				zzsleep(struct phl *phl);
+void				think(struct phl *phl);
+void				eat(struct phl *phl);
 
 void				wgas(struct philo *p, int status);
 void				fphl(struct philo *p, int d);
