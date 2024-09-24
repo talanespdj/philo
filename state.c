@@ -11,29 +11,30 @@
 /* ************************************************************************** */
 #include "philo.h"
 
-void	eat(struct philo *p, int i, int d)
+void	eat(struct philo *phl, int i)
 {
-	(void)d;
-	// pthread_mutex_lock(&p->phl[i]->mtx);
-	// p->phl[d]->fork = 1;
-	// p->phl[i]->fork = 1;
-	printf("%zu %d has taken a fork\n", ttime(p), p->phl[i]->id);
-	printf("%zu %d has taken a fork\n", ttime(p), p->phl[i]->id);
-	printf("%zu %d is eating\n", ttime(p), p->phl[i]->id);
-	usleep(p->tt_eat);
-	p->phl[i]->lastteating = ttime(p);
-	// p->phl[d]->fork = 0;
-	// p->phl[i]->fork = 0;
-	// pthread_mutex_unlock(&p->phl[i]->mtx);
+	pthread_mutex_lock(&phl->r_fork->mtx);
+	phl->r_fork->state = taken;
+	printf("%zu %d has taken a fork\n", ttime(p), phl->id);
+	pthread_mutex_lock(&phl->fork.mtx);
+	phl->fork->state = taken;
+	printf("%zu %d has taken a fork\n", ttime(p), phl->id);
+	printf("%zu %d is eating\n", ttime(p), phl[i]->id);
+	phl->lastteating = ttime(p);
+	tusleep(p->tt_eat);
+	phl->fork->state = available;
+	pthread_mutex_unlock(&phl->fork.mtx);
+	phl->r_fork->state = available;
+	pthread_mutex_unlock(&phl->r_fork->mtx);
 }
 
 void	think(struct philo *p, int i)
 {
-	printf("%zu %d is thinking\n", ttime(p), p->phl[i]->id);
+	printf("%zu %d is thinking\n", ttime(p), phl->id);
 }
 
-void	zzsleep(struct philo *p, int i)
+void	zzsleep(struct philo *phl, int i)
 {
-	printf("%zu %d is sleeping\n", ttime(p), p->phl[i]->id);
-	usleep(p->tt_sleep);
+	printf("%zu %d is sleeping\n", ttime(p), phl->id);
+	tusleep(phl->tt_sleep);
 }

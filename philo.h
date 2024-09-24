@@ -22,7 +22,7 @@
 typedef enum w_state
 {
 	available,
-	unavailable,
+	taken,
 }		t_state;
 
 typedef enum w_health
@@ -82,7 +82,7 @@ void				putstrfd(char *str, int fd);
 
 void				zzsleep(struct philo *p, int i);
 void				think(struct philo *p, int i);
-void				eat(struct philo *p, int i, int d);
+void				eat(struct philo *p, int i);
 
 void				wgas(struct philo *p, int status);
 void				fphl(struct philo *p, int d);

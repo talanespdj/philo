@@ -15,18 +15,19 @@
 void	*momeseno(void *philo)
 {
 	struct phl	*phl;
-	int			i;
 
 	phl = (struct phl *)philo;
-	i = phl->id;
 	// printf("[%d]\t, je pointe sur thread // [%d]\n", phl->fork.id, phl->r_fork->id); 
-	// while (phl->health == alive)
-	// {
-	// 	choisir l etat dans lequel il sera
-	// 	void	zzsleep(struct philo *p, int i);
-	// 	void	think(struct philo *p, int i);
-	// 	void	eat(struct philo *p, int i, int d);
-	// }
+	while (phl->health == alive)
+	{
+		think(phl, phl->i);
+		eat(phl, phl->i);
+		zzsleep(phl, phl->i);
+		// choisir l etat dans lequel il sera
+		// void	zzsleep(struct philo *p, int i);
+		// void	think(struct philo *p, int i);
+		// void	eat(struct philo *p, int i);
+	}
 	return (NULL);
 }
 

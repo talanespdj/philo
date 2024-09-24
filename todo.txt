@@ -12,3 +12,10 @@ https://www.youtube.com/playlist?list=PLfqABt5AS4FmuQf70psXrsMLEDQXNkLq2
 
 	usleep // gettimeofday // pthread_create // pthread_detach // pthread_join // pthread_mutex_init 
 		pthread_mutex_destroy //pthread_mutex_lock // pthread_mutex_unlock
+
+
+
+
+
+
+dont forget tout erase everything in Makefile
