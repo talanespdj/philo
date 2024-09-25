@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 17:56:42 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/24 17:55:24 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/25 13:41:10 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
@@ -17,17 +17,19 @@ void	*momeseno(void *philo)
 	struct phl	*phl;
 
 	phl = (struct phl *)philo;
-	// if phl->id est impair
-		// tusleep(84)
 	if (!(phl->id % 2 == 0))
 		tusleep(2);
-	// printf("[%d]\t, je pointe sur thread // [%d]\n", phl->fork.id, phl->r_fork->id); 
 	while (phl->health == alive)
 	{
-		think(phl);
-		if (phl->ntteat != -1 && phl->ntiate != phl->ntteat)
-			eat(phl);
-		zzsleep(phl);
+//		pthread_mutex_lock(&phl->fork.mtx);
+		if (phl->health == alive)
+		{
+//			pthread_mutex_unlock(&phl->fork.mtx);
+			if ((phl->ntteat == -1) || (phl->ntteat != -1 && phl->ntiate <= phl->ntteat))
+				eat(phl);
+			think(phl);
+			zzsleep(phl);
+		}
 	}
 	return (NULL);
 }
@@ -45,7 +47,9 @@ void	*surveil(void *philo)
 	{
 		if (i == p->n_philo)
 			i = 0;
-		t = ttime(p->tstart) - p->phl[i]->lastteating;
+		pthread_mutex_lock(&p->phl[i]->fork.mtx);
+		t = p->phl[i]->lastteating - ttime(p->tstart);
+		pthread_mutex_unlock(&p->phl[i]->fork.mtx);
 		if (t > p->tt_die)
 		{
 			while (++r < p->n_philo)
