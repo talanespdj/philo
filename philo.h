@@ -43,6 +43,7 @@ typedef struct philo
 	struct phl		**phl;
 	time_t			tstart;
 	pthread_mutex_t		write_mtx;
+	pthread_mutex_t		death;
 	pthread_t			thread;
 	int				n_philo;
 	time_t				tt_die;
@@ -56,9 +57,10 @@ typedef struct philo
 typedef struct phl
 {
 	enum w_health			health;
-	pthread_t			thread;
+	struct philo			*p;
 	struct fork				fork;
 	struct fork				*r_fork;
+	pthread_t			thread;
 	int					id;
 	int					tt_die;
 	int					tt_eat;

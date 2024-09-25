@@ -5,10 +5,15 @@ https://www.youtube.com/playlist?list=PLfqABt5AS4FmuQf70psXrsMLEDQXNkLq2
 
 [✅]= relire le sujet pour bien comprendre ce qui est demande
 
-[ ]= finir la fonction routine momeseno pour quelle tourne en boucle
+[✅]= finir la fonction routine momeseno pour quelle tourne en boucle
 
-[ ]= finir la fonction surveil qui vient superviser en boucle si la derniere fois qu'il a mange > tt_die
+[✅]= finir la fonction surveil qui vient superviser en boucle si la derniere fois qu'il a mange > tt_die
 		ttime(p) - phl[n]->lastteating
+
+[ ]= ajouter l'utilisation du write_mtx qui est accesssible à chaque phl[i] grâce au 
+		pointeur phl[i]->p qui pointe vers la structure principale
+
+[ ]= arrêter le programme lorsqu'un philo meurt
 
 	usleep // gettimeofday // pthread_create // pthread_detach // pthread_join // pthread_mutex_init 
 		pthread_mutex_destroy //pthread_mutex_lock // pthread_mutex_unlock

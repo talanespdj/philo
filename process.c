@@ -44,6 +44,7 @@ void	fill_phl(struct philo *p, char **av, int i)
 		p->phl[i] = (t_phl *)malloc(sizeof(t_phl));
 		if (!p->phl[i])
 			wgas(p, sstatus(p, i));
+		p->phl[i]->p = p;
 		p->phl[i]->id = i + 1;
 		p->phl[i]->health = alive;
 		p->phl[i]->tstart = p->tstart;
