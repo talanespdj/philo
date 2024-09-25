@@ -17,7 +17,6 @@ void	everinit(struct philo *p, char **av)
 
 	gettimeofday(&t, NULL);
 	p->tstart = t.tv_sec * 1000 + t.tv_usec / 1000;
-	p->pair = 0;
 	p->situation = 0;
 	p->n_philo = talanatoi(p, av[1], 1);
 	p->tt_die = talanatoi(p, av[2], 2);
@@ -28,8 +27,9 @@ void	everinit(struct philo *p, char **av)
 	pthread_mutex_init(&p->write_mtx, NULL);
 	if (p->situation == 42)
 		wgas(p, -1);
+	p->pair = 0;
 	if (p->n_philo % 2 == 0)
-		p->pair = 1;
+		p->pair = 22;
 	p->phl = (t_phl **)malloc(sizeof(t_phl *) * (p->n_philo));
 	if (!p->phl)
 		wgas(p, -1);
