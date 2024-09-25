@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 21:47:32 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/25 13:16:49 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/25 16:35:28 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
@@ -30,10 +30,10 @@ void	philosophers(struct philo *p)
 	}
 	else
 	{
-		pthread_create(&p->thread, NULL, &surveil, (void *)p);
+		pthread_create(&p->death, NULL, &surveil, (void *)p);
 		while (++i < p->n_philo)
 			pthread_create(&p->phl[i]->thread, NULL, &momeseno, (void *)p->phl[i]);
-		pthread_join(p->thread, NULL);
+		pthread_join(p->death, NULL);
 	}
 }
 

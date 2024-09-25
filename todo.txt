@@ -3,17 +3,13 @@ https://www.geeksforgeeks.org/condition-wait-signal-multi-threading/?ref=next_ar
 
 https://www.youtube.com/playlist?list=PLfqABt5AS4FmuQf70psXrsMLEDQXNkLq2
 
-[✅]= relire le sujet pour bien comprendre ce qui est demande
-
-[✅]= finir la fonction routine momeseno pour quelle tourne en boucle
-
-[✅]= finir la fonction surveil qui vient superviser en boucle si la derniere fois qu'il a mange > tt_die
-		ttime(p) - phl[n]->lastteating
-
 [✅]= gerer le cas ou il n'y a qu'un seul philo
 
-[ ]= ajouter l'utilisation du write_mtx qui est accesssible à chaque phl[i] grâce au 
-		pointeur phl[i]->p qui pointe vers la structure principale
+[✅]= ajouter l'utilisation du write_mtx qui est accesssible à chaque phl[i] via
+		un pointeur *write_mtx dans chaque struct de philo
+
+[✅]= si la derniere fois qu'il a mange > tt_die 
+	phl[n]->lastteating - ttime(p) > phl->tt_die 
 
 [ ]= arrêter le programme lorsqu'un philo meurt
 

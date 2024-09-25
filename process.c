@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 22:08:26 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/25 13:27:25 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/25 20:21:01 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
@@ -44,7 +44,6 @@ void	fill_phl(struct philo *p, char **av, int i)
 		p->phl[i] = (t_phl *)malloc(sizeof(t_phl));
 		if (!p->phl[i])
 			wgas(p, sstatus(p, i));
-		p->phl[i]->p = p;
 		p->phl[i]->id = i + 1;
 		p->phl[i]->health = alive;
 		p->phl[i]->tstart = p->tstart;
@@ -57,16 +56,13 @@ void	fill_phl(struct philo *p, char **av, int i)
 			p->phl[i]->ntteat = p->ntteat;
 		p->phl[i]->fork.id = i;
 		p->phl[i]->ntiate = 0;
+		p->phl[i]->write_mtx = &p->write_mtx;
 		pthread_mutex_init(&p->phl[i]->fork.mtx, NULL);
 	}
 	i = -1;
-	while (++i < p->n_philo)
-	{
-		if (i == p->n_philo - 1)
-			p->phl[i]->r_fork = &p->phl[0]->fork;
-		else
-			p->phl[i]->r_fork = &p->phl[i + 1]->fork;
-	}
+	while (++i < p->n_philo - 1)
+		p->phl[i]->r_fork = &p->phl[i + 1]->fork;
+	p->phl[i]->r_fork = &p->phl[0]->fork;
 }
 
 time_t	ttime(time_t tstart)

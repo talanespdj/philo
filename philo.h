@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 21:47:51 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/24 22:34:38 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/25 16:35:03 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PHILO_H
@@ -40,37 +40,35 @@ typedef struct fork
 
 typedef struct philo
 {
-	struct phl		**phl;
-	time_t			tstart;
+	struct phl			**phl;
+	time_t				tstart;
 	pthread_mutex_t		write_mtx;
-	pthread_mutex_t		death;
-	pthread_t			thread;
-	int				n_philo;
+	pthread_t			death;
+	int					n_philo;
 	time_t				tt_die;
 	time_t				tt_eat;
 	time_t				tt_sleep;
-	int				situation;
-	int				ntteat;
-	int				pair;
+	int					situation;
+	int					ntteat;
+	int					pair;
 }			t_philo;
 
 typedef struct phl
 {
-	enum w_health			health;
-	struct philo			*p;
-	struct fork				fork;
-	struct fork				*r_fork;
+	enum w_health		health;
+	struct fork			fork;
+	struct fork			*r_fork;
 	pthread_t			thread;
+	pthread_mutex_t		*write_mtx;
 	int					id;
 	int					tt_die;
 	int					tt_eat;
 	int					tt_sleep;
 	int					ntiate;
 	int					ntteat;
-	time_t					tstart;
-	time_t					lastteating;
+	time_t				tstart;
+	time_t				lastteating;
 }			t_phl;
-
 
 void				philosophers(struct philo *p);
 
