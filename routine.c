@@ -29,8 +29,6 @@ void	*momeseno(void *philo)
 			eat(phl);
 		zzsleep(phl);
 	}
-	if (phl->health == dead)
-		printf("%zu %d JE SUIS DEAD\n", ttime(phl->tstart), phl->id);
 	return (NULL);
 }
 
@@ -38,6 +36,7 @@ void	*surveil(void *philo)
 {
 	struct philo	*p;
 	int				i;
+	int				r = -1;
 	time_t				t;
 
 	i = 0;
@@ -49,7 +48,12 @@ void	*surveil(void *philo)
 		t = ttime(p->tstart) - p->phl[i]->lastteating;
 		if (t > p->tt_die)
 		{
-			p->phl[i]->health = dead;
+			while (++r < p->n_philo)
+			{
+				pthread_mutex_lock(&p->phl[r]->fork.mtx);
+				p->phl[r]->health = dead;
+				pthread_mutex_unlock(&p->phl[r]->fork.mtx);
+			}
 			printf("%zu %d died\n", ttime(p->tstart), i);
 			return (NULL);
 		}
