@@ -81,8 +81,6 @@ void				everinit(struct philo *p, char **argv);
 void				fill_phl(struct philo *p, char **av, int i);
 time_t				ttime(time_t tstart);
 void				tusleep(time_t mls);
-time_t				pc_time(void);
-void				putstrfd(char *str, int fd);
 
 void				zzsleep(struct phl *phl);
 void				think(struct phl *phl);

@@ -75,6 +75,14 @@ time_t	ttime(time_t tstart)
 	return ((t.tv_sec * 1000 + t.tv_usec / 1000) - tstart);
 }
 
+static time_t	pc_time(void)
+{
+	struct timeval	t;
+
+	gettimeofday(&t, NULL);
+	return (t.tv_sec * 1000 + t.tv_usec / 1000);
+}
+
 void	tusleep(time_t mls)
 {
 	struct timeval t;
@@ -84,26 +92,4 @@ void	tusleep(time_t mls)
 	start = (t.tv_sec * 1000 + t.tv_usec / 1000);
 	while ((pc_time() - start) < mls)
 		usleep(500);
-}
-
-time_t	pc_time(void)
-{
-	struct timeval	t;
-
-	gettimeofday(&t, NULL);
-	return (t.tv_sec * 1000 + t.tv_usec / 1000);
-}
-
-/*size_t	reset_time(t_phl phl)
-{
-	size_t	t;
-
-	t = ttime();
-	return (t - phl.lastteating);
-}*/
-
-void	putstrfd(char *str, int fd)
-{
-	while (*str)
-		write(fd, str++, 1);
 }

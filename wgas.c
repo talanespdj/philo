@@ -18,7 +18,7 @@ void	wgas(struct philo *p, int status)
 	i = -1;
 	if (status == -1)
 	{
-		putstrfd("verif args, must be numbers > 0\n", 2);
+		printf("verif args, must be numbers > 0\n");
 		exit(status);
 	}
 	while (++i < p->n_philo && p->n_philo != 1)
@@ -35,7 +35,7 @@ void	wgas(struct philo *p, int status)
 			fphl(p, p->situation);
 	}
 	else if (status == 20)
-		putstrfd("gettimeofday failed\n", 2);
+		printf("gettimeofday failed\n");
 	exit(status);
 }
 

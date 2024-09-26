@@ -13,7 +13,7 @@
 
 int	talanatoi(struct philo *p, char *str, int d)
 {
-	long int	nt;
+	time_t	nt;
 	int			i;
 
 	i = 0;
