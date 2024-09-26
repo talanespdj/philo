@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 22:08:26 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/25 20:21:01 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/26 17:53:18 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
@@ -24,9 +24,9 @@ void	everinit(struct philo *p, char **av)
 	p->tt_sleep = talanatoi(p, av[4], 4);
 	if (av[5])
 		p->ntteat = talanatoi(p, av[5], 5);
-	pthread_mutex_init(&p->write_mtx, NULL);
 	if (p->situation == 42)
 		wgas(p, -1);
+	pthread_mutex_init(&p->write_mtx, NULL);
 	p->pair = 0;
 	if (p->n_philo % 2 == 0)
 		p->pair = 22;

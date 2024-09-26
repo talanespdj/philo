@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 17:56:42 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/26 04:47:10 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/26 18:49:11 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
@@ -18,7 +18,7 @@ void	*momeseno(void *philo)
 
 	phl = (struct phl *)philo;
 	if (!(phl->id % 2 == 0))
-		tusleep(2);
+		tusleep(phl->tt_eat);
 	while (22)
 	{
 		pthread_mutex_lock(&phl->fork.mtx);
@@ -57,12 +57,13 @@ void	*surveil(void *philo)
 	i = 0;
 	p = (struct philo *)philo;
 	r = -1;
-	while (1)
+	while (22)
 	{
 		if (i == p->n_philo)
 			i = 0;
 		pthread_mutex_lock(&p->phl[i]->fork.mtx);
 		t = ttime(p->tstart) - p->phl[i]->lastteating;
+	//	printf("\t\t\tt = %zu\n", t);
 		pthread_mutex_unlock(&p->phl[i]->fork.mtx);
 		if (t > p->tt_die)
 		{

@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 22:48:11 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/25 20:21:26 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/26 17:52:23 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
@@ -16,6 +16,11 @@ void	wgas(struct philo *p, int status)
 	int	i;
 
 	i = -1;
+	if (status == -1)
+	{
+		putstrfd("verif args, must be numbers > 0\n", 2);
+		exit(status);
+	}
 	while (++i < p->n_philo && p->n_philo != 1)
 	{
 		pthread_join(p->phl[i]->thread, NULL);
@@ -29,8 +34,6 @@ void	wgas(struct philo *p, int status)
 		else
 			fphl(p, p->situation);
 	}
-	else if (status == -1)
-		putstrfd("verif args, must be numbers > 0\n", 2);
 	else if (status == 20)
 		putstrfd("gettimeofday failed\n", 2);
 	exit(status);
