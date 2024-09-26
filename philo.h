@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 21:47:51 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/25 16:35:03 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/26 03:58:14 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PHILO_H
@@ -40,17 +40,17 @@ typedef struct fork
 
 typedef struct philo
 {
-	struct phl			**phl;
-	time_t				tstart;
 	pthread_mutex_t		write_mtx;
 	pthread_t			death;
+	struct phl			**phl;
+	time_t				tstart;
+	int					situation;
+	int					ntteat;
+	int					pair;
 	int					n_philo;
 	time_t				tt_die;
 	time_t				tt_eat;
 	time_t				tt_sleep;
-	int					situation;
-	int					ntteat;
-	int					pair;
 }			t_philo;
 
 typedef struct phl
@@ -85,6 +85,7 @@ void				putstrfd(char *str, int fd);
 void				zzsleep(struct phl *phl);
 void				think(struct phl *phl);
 void				eat(struct phl *phl);
+int				death(struct phl *phl);
 
 void				wgas(struct philo *p, int status);
 void				fphl(struct philo *p, int d);

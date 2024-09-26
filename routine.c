@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 17:56:42 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/25 20:17:30 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/26 04:47:10 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
@@ -25,9 +25,6 @@ void	*momeseno(void *philo)
 		if ((phl->health == alive && (phl->ntteat == -1)) || (phl->ntteat != -1 && phl->ntiate <= phl->ntteat))
 		{
 			pthread_mutex_unlock(&phl->fork.mtx);
-			pthread_mutex_lock(phl->write_mtx);
-			printf("je passe\n");
-			pthread_mutex_unlock(phl->write_mtx);
 			eat(phl);
 			pthread_mutex_lock(&phl->fork.mtx);
 			if ((phl->ntteat != -1 && phl->ntiate == phl->ntteat))
@@ -36,8 +33,10 @@ void	*momeseno(void *philo)
 				return (NULL);
 			}
 			pthread_mutex_unlock(&phl->fork.mtx);
-			think(phl);
-			zzsleep(phl);
+//			if (!death(phl))
+				zzsleep(phl);
+//			if (!death(phl))
+				think(phl);
 		}
 		else
 		{
@@ -55,29 +54,34 @@ void	*surveil(void *philo)
 	int				r;
 	time_t				t;
 
-	i = -1;
-	r = -1;
+	i = 0;
 	p = (struct philo *)philo;
-	while (++i)
+	r = -1;
+	while (1)
 	{
 		if (i == p->n_philo)
 			i = 0;
 		pthread_mutex_lock(&p->phl[i]->fork.mtx);
-		t = p->phl[i]->lastteating - ttime(p->tstart);
+		t = ttime(p->tstart) - p->phl[i]->lastteating;
 		pthread_mutex_unlock(&p->phl[i]->fork.mtx);
 		if (t > p->tt_die)
 		{
 			pthread_mutex_lock(&p->write_mtx);
+			printf("\033[0;92m\t\t%zu %d died // lastteating %zu\ttt_die // %zu\n\033[0m", ttime(p->tstart), i, p->phl[i]->lastteating, p->tt_die);
+			printf("\t\t\tt = %zu\n", t);
 			while (++r < p->n_philo)
 			{
+				printf("WHATS HAPPENING\tphilo %d\n", r + 1);
 				pthread_mutex_lock(&p->phl[r]->fork.mtx);
 				p->phl[r]->health = dead;
 				pthread_mutex_unlock(&p->phl[r]->fork.mtx);
 			}
-			printf("\033[0;92m\t\t%zu %d died\n\033[0m", ttime(p->tstart), i);
+			//printf("\033[0;92m\t\t%zu %d died // lastteating %zu\ttt_die // %zu\n\033[0m", ttime(p->tstart), i, p->phl[i]->lastteating, p->tt_die);
+			//printf("\t\t\tt = %zu\n", t);
 			pthread_mutex_unlock(&p->write_mtx);
 			return (NULL);
 		}
+		i++;
 	}
 	return (NULL);
 }

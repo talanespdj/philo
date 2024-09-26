@@ -3,6 +3,9 @@ https://www.geeksforgeeks.org/condition-wait-signal-multi-threading/?ref=next_ar
 
 https://www.youtube.com/playlist?list=PLfqABt5AS4FmuQf70psXrsMLEDQXNkLq2
 
+https://github.com/koekeishiya/yabai
+app pour gerer les windows sur mac
+
 [✅]= gerer le cas ou il n'y a qu'un seul philo
 
 [✅]= ajouter l'utilisation du write_mtx qui est accesssible à chaque phl[i] via
@@ -12,6 +15,10 @@ https://www.youtube.com/playlist?list=PLfqABt5AS4FmuQf70psXrsMLEDQXNkLq2
 	phl[n]->lastteating - ttime(p) > phl->tt_die 
 
 [ ]= arrêter le programme lorsqu'un philo meurt
+
+[ ]= possible deadlock lorsqu'un philo meurt, que dans ma fonction surveil je vais chercher les mtx de chaque philo
+		pour set plh->health = dead, si le mtx du philo est deja pris boucle infini 
+		analyser avec les WHATS HAPPENING philo->id	
 
 	usleep // gettimeofday // pthread_create // pthread_detach // pthread_join // pthread_mutex_init 
 		pthread_mutex_destroy //pthread_mutex_lock // pthread_mutex_unlock
