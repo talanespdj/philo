@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 22:08:26 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/26 17:53:18 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/26 20:18:37 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
@@ -35,7 +35,6 @@ void	everinit(struct philo *p, char **av)
 	if (!p->phl)
 		wgas(p, -1);
 	fill_phl(p, av, -1);
-
 }
 
 void	fill_phl(struct philo *p, char **av, int i)
@@ -85,8 +84,8 @@ static time_t	pc_time(void)
 
 void	tusleep(time_t mls)
 {
-	struct timeval t;
-	time_t	start;
+	struct timeval	t;
+	time_t			start;
 
 	gettimeofday(&t, NULL);
 	start = (t.tv_sec * 1000 + t.tv_usec / 1000);
