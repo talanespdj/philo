@@ -40,6 +40,7 @@ typedef struct fork
 
 typedef struct philo
 {
+	pthread_mutex_t		death_mtx;
 	pthread_mutex_t		write_mtx;
 	pthread_t			death;
 	struct phl			**phl;
@@ -56,9 +57,10 @@ typedef struct philo
 typedef struct phl
 {
 	enum w_health		health;
+	pthread_t			thread;
 	struct fork			fork;
 	struct fork			*r_fork;
-	pthread_t			thread;
+	pthread_mutex_t		*death_mtx;
 	pthread_mutex_t		*write_mtx;
 	int					id;
 	int					tt_die;

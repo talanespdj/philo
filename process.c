@@ -26,6 +26,7 @@ void	everinit(struct philo *p, char **av)
 		p->ntteat = talanatoi(p, av[5], 5);
 	if (p->situation == 42)
 		wgas(p, -1);
+	pthread_mutex_init(&p->death_mtx, NULL);
 	pthread_mutex_init(&p->write_mtx, NULL);
 	p->pair = 0;
 	if (p->n_philo % 2 == 0)
@@ -57,6 +58,7 @@ void	fill_phl(struct philo *p, char **av, int i)
 		p->phl[i]->fork.id = i;
 		p->phl[i]->ntiate = 0;
 		p->phl[i]->write_mtx = &p->write_mtx;
+		p->phl[i]->death_mtx = &p->death_mtx;
 		pthread_mutex_init(&p->phl[i]->fork.mtx, NULL);
 	}
 	i = -1;

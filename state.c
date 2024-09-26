@@ -31,7 +31,9 @@ void	eat(struct phl *phl)
 	phl->fork.state = taken;
 	pthread_mutex_lock(phl->write_mtx);
 	printf("%zu %d has taken a fork\n", ttime(phl->tstart), phl->id);
+	pthread_mutex_lock(phl->death_mtx);
 	phl->lastteating = ttime(phl->tstart); //set le lastteating avant de faire le tusleep de tt_eat
+	pthread_mutex_unlock(phl->death_mtx);
 	printf("\033[0;93m%zu %d is eating\tlastteating // %zu\n\033[0m", ttime(phl->tstart), phl->id, phl->lastteating);
 	pthread_mutex_unlock(phl->write_mtx);
 	tusleep(phl->tt_eat);

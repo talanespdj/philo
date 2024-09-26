@@ -61,10 +61,12 @@ void	*surveil(void *philo)
 	{
 		if (i == p->n_philo)
 			i = 0;
-		pthread_mutex_lock(&p->phl[i]->fork.mtx);
+		pthread_mutex_lock(p->phl[i]->death_mtx);
 		t = ttime(p->tstart) - p->phl[i]->lastteating;
+		pthread_mutex_unlock(p->phl[i]->death_mtx);
 	//	printf("\t\t\tt = %zu\n", t);
-		pthread_mutex_unlock(&p->phl[i]->fork.mtx);
+		// if (!(t > p->tt_die)) 
+			// pthread_mutex_unlock(p->phl[i]->death_mtx);
 		if (t > p->tt_die)
 		{
 			pthread_mutex_lock(&p->write_mtx);
