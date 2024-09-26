@@ -22,13 +22,22 @@
 typedef enum w_state
 {
 	available,
-	taken,
+	taken
 }		t_state;
+
+typedef enum w_sit
+{
+	EAT,
+	THINK,
+	SLEEP,
+	take,
+	debug,
+}		t_sit;
 
 typedef enum w_health
 {
 	alive,
-	dead,
+	dead
 }		t_health;
 
 typedef struct fork
@@ -60,6 +69,7 @@ typedef struct phl
 	pthread_t			thread;
 	struct fork			fork;
 	struct fork			*r_fork;
+	pthread_mutex_t		phl_mtx;
 	pthread_mutex_t		*death_mtx;
 	pthread_mutex_t		*write_mtx;
 	int					id;
@@ -85,12 +95,13 @@ void				tusleep(time_t mls);
 void				zzsleep(struct phl *phl);
 void				think(struct phl *phl);
 void				eat(struct phl *phl);
-int				death(struct phl *phl);
+int					death(struct phl *phl);
 
 void				wgas(struct philo *p, int status);
 void				fphl(struct philo *p, int d);
 int					sstatus(struct philo *p, int d);
 
 int					talanatoi(struct philo *p, char *str, int d);
+void				writeft(struct phl *phl, t_sit sit);
 
 #endif

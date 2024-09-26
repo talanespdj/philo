@@ -11,9 +11,10 @@
 /* ************************************************************************** */
 #include "philo.h"
 
+
 int	talanatoi(struct philo *p, char *str, int d)
 {
-	time_t	nt;
+	long int	nt;
 	int			i;
 
 	i = 0;
@@ -38,4 +39,33 @@ int	talanatoi(struct philo *p, char *str, int d)
 		if (nt > 2147483647 || nt < 0)
 			return (sstatus(p, 42));
 	return (nt);
+}
+
+void	writeft(struct phl *phl, t_sit sit)
+{
+	time_t	tstart;
+
+	tstart = ttime(phl->tstart);
+	if (sit == debug)
+	{
+		printf("\033[0;93m%zu %d\tDEBUG TIME\n\033[0m", tstart, phl->id);
+		return ;
+	}
+	pthread_mutex_lock(&phl->phl_mtx);
+	if (phl->health == dead)
+	{
+		pthread_mutex_unlock(&phl->phl_mtx);
+		return ;
+	}
+	pthread_mutex_unlock(&phl->phl_mtx);
+	pthread_mutex_lock(phl->write_mtx);
+	if (sit == take)
+		printf("%zu %d has taken a fork\n", tstart, phl->id);
+	if (sit == SLEEP)
+		printf("\033[0;91m%zu %d is sleeping\n\033[0m", tstart, phl->id);
+	if (sit == THINK)
+		printf("\033[0;94m%zu %d is thinking\n\033[0m", tstart, phl->id);
+	if (sit == EAT)
+		printf("\033[0;93m%zu %d is eating\n\033[0m", tstart, phl->id);
+	pthread_mutex_unlock(phl->write_mtx);
 }

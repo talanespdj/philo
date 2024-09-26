@@ -13,7 +13,7 @@
 
 void	philosophers(struct philo *p)
 {
-	int			i;
+	int	i;
 
 	i = -1;
 	if (p->n_philo == 1)
@@ -30,8 +30,10 @@ void	philosophers(struct philo *p)
 	{
 		pthread_create(&p->death, NULL, &surveil, (void *)p);
 		while (++i < p->n_philo)
-			pthread_create(&p->phl[i]->thread, NULL, &momeseno, (void *)p->phl[i]);
-		pthread_join(p->death, NULL);
+			pthread_create(&p->phl[i]->thread, NULL, &momeseno, p->phl[i]);
+		i = -1;
+		while (++i < p->n_philo)
+			pthread_join(p->phl[i]->thread, NULL);
 		printf("FFFFFFFFFFF\t\tEND\n");
 	}
 }
