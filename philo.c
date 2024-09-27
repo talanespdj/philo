@@ -34,7 +34,7 @@ void	philosophers(struct philo *p)
 		i = -1;
 		while (++i < p->n_philo)
 			pthread_join(p->phl[i]->thread, NULL);
-		printf("FFFFFFFFFFF\t\tEND\n");
+		pthread_join(p->death, NULL);
 	}
 }
 

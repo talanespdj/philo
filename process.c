@@ -65,6 +65,8 @@ void	fill_phl(struct philo *p, char **av, int i)
 	while (++i < p->n_philo - 1)
 		p->phl[i]->r_fork = &p->phl[i + 1]->fork;
 	p->phl[i]->r_fork = &p->phl[0]->fork;
+	// p->phl[i]->r_fork = &p->phl[i]->fork;
+	// p->phl[i]->fork = p->phl[0]->fork;
 }
 
 time_t	ttime(time_t tstart)

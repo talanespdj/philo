@@ -62,10 +62,10 @@ void	writeft(struct phl *phl, t_sit sit)
 	if (sit == take)
 		printf("%zu %d has taken a fork\n", tstart, phl->id);
 	if (sit == SLEEP)
-		printf("\033[0;91m%zu %d is sleeping\n\033[0m", tstart, phl->id);
+		printf("%zu %d is sleeping\n", tstart, phl->id);
 	if (sit == THINK)
-		printf("\033[0;94m%zu %d is thinking\n\033[0m", tstart, phl->id);
+		printf("%zu %d is thinking\n", tstart, phl->id);
 	if (sit == EAT)
-		printf("\033[0;93m%zu %d is eating\n\033[0m", tstart, phl->id);
+		printf("%zu %d is eating\n", tstart, phl->id);
 	pthread_mutex_unlock(phl->write_mtx);
 }
