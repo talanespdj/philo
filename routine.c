@@ -67,11 +67,9 @@ void	*surveil(void *philo)
 			printf("\033[0;92m//////////////  %zu %d died  //////////////\n\033[0m", ttime(p->tstart), i + 1);
 			while (++r < p->n_philo)
 			{
-				printf("WHATS HAPPENING\tphilo %d\n", r + 1);
-				writeft(p->phl[r], debug);
 				pthread_mutex_lock(&p->phl[r]->phl_mtx);
 				p->phl[r]->health = dead;
-				pthread_mutex_lock(&p->phl[r]->phl_mtx);
+				pthread_mutex_unlock(&p->phl[r]->phl_mtx);
 			}
 			pthread_mutex_unlock(&p->write_mtx);
 			return (NULL);

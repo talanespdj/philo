@@ -9,7 +9,7 @@ app pour gerer les windows sur mac
 [✅]= si la derniere fois qu'il a mange > tt_die 
 	phl[n]->lastteating - ttime(p) > phl->tt_die 
 
-[ ]= arrêter le programme lorsqu'un philo meurt
+[✅]= arrêter le programme lorsqu'un philo meurt
 
 [ ]= possible deadlock lorsqu'un philo meurt, que dans ma fonction surveil je vais chercher les mtx de chaque philo
 		pour set plh->health = dead, si le mtx du philo est deja pris boucle infini 
