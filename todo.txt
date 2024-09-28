@@ -15,6 +15,9 @@ app pour gerer les windows sur mac
 		pour set plh->health = dead, si le mtx du philo est deja pris boucle infini 
 		analyser avec les WHATS HAPPENING philo->id
 
+[✅]= essayer d'inverser l'ordre de take les fourchettes pour le dernier philo !! possible deadlock
+		il fallait le faire pour tous les philos impair
+
 \\\\\\\\\\\\ Makefile !!
 	ENLEVER FSANITIZE \\\\\\
 	ENLEVER FSANITIZE \\\\\\
@@ -22,21 +25,10 @@ app pour gerer les windows sur mac
 	ENLEVER FSANITIZE \\\\\\
 
 
-[✅]= essayer d'inverser l'ordre de take les fourchettes pour le dernier philo !! possible deadlock
-		il fallait le faire pour tous les philos impair
-
 [✅]= normer le tout
 
-[+] Test #23 Testing philo with 3 610 200 80
-[1...] 1sec - still alive
-[2...] 2sec - still alive
-[3...][+] Test #23 Failed with 3 610 200 80, the philosopher should stay alive for at least 40 seconds
 
-
-[+] Test #24 Testing philo with 3 610 200 200
-[1...] 1sec - still alive
-[2...] 2sec - still alive
-[3...][+] Test #24 Failed with 3 610 200 200, the philosopher should stay alive for at least 40 seconds
+[ ]= lorsqu'il y a un ntteat et qu'il est remplit et que c'est la cause de pourquoi quelqu'un meurto
 
 
 \\\\\\\\\\\\ Makefile !!
