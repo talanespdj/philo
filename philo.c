@@ -25,17 +25,17 @@ void	philosophers(struct philo *p)
 			i++;
 		pthread_mutex_unlock(&p->phl[0]->fork.mtx);
 		printf("%zu %d died\n", ttime(p->tstart), 1);
+		wgas(p, 0);
 	}
-	else
-	{
-		pthread_create(&p->death, NULL, &surveil, (void *)p);
-		while (++i < p->n_philo)
-			pthread_create(&p->phl[i]->thread, NULL, &momeseno, p->phl[i]);
-		i = -1;
-		while (++i < p->n_philo)
-			pthread_join(p->phl[i]->thread, NULL);
-		pthread_join(p->death, NULL);
+	pthread_create(&p->liso, NULL, &surveil, (void *)p);
+	while (++i < p->n_philo)
+		pthread_create(&p->phl[i]->thread, NULL, &momeseno, p->phl[i]);
+	i = -1;
+	while (++i < p->n_philo) {
+		// printf("thread %d\t222222222222222222222222\n", i + 1);
+		pthread_join(p->phl[i]->thread, NULL);
 	}
+	pthread_join(p->liso, NULL);
 }
 
 int	main(int argc, char **argv)
@@ -46,7 +46,7 @@ int	main(int argc, char **argv)
 		printf("need ./philo + 4 || 5 args\n");
 	else
 	{
-		everinit(&p, argv);
+		everinit(&p, argv, -1);
 		if (p.situation)
 			wgas(&p, p.situation);
 		philosophers(&p);

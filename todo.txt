@@ -11,13 +11,24 @@ app pour gerer les windows sur mac
 
 [✅]= arrêter le programme lorsqu'un philo meurt
 
-[ ]= possible deadlock lorsqu'un philo meurt, que dans ma fonction surveil je vais chercher les mtx de chaque philo
+[✅]= possible deadlock lorsqu'un philo meurt, que dans ma fonction surveil je vais chercher les mtx de chaque philo
 		pour set plh->health = dead, si le mtx du philo est deja pris boucle infini 
 		analyser avec les WHATS HAPPENING philo->id
 
+\\\\\\\\\\\\ Makefile !!
+	ENLEVER FSANITIZE \\\\\\
+	ENLEVER FSANITIZE \\\\\\
+	ENLEVER FSANITIZE \\\\\\
+	ENLEVER FSANITIZE \\\\\\
+
+
 [ ]= essayer d'inverser l'ordre de take les fourchettes pour le dernier philo !! possible deadlock
 
-[ ]= rajouter un tt_think, si le nombre de philo est impair 
+[ ]= normer le tout
 
 
-dont forget tout erase everything in Makefile
+\\\\\\\\\\\\ Makefile !!
+	ENLEVER FSANITIZE \\\\\\
+	ENLEVER FSANITIZE \\\\\\
+	ENLEVER FSANITIZE \\\\\\
+	ENLEVER FSANITIZE \\\\\\

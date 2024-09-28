@@ -6,12 +6,12 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 22:08:26 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/26 23:25:51 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/28 02:27:01 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
 
-void	everinit(struct philo *p, char **av)
+void	everinit(struct philo *p, char **av, int i)
 {
 	struct timeval		t;
 
@@ -26,15 +26,16 @@ void	everinit(struct philo *p, char **av)
 		p->ntteat = talanatoi(p, av[5], 5);
 	if (p->situation == 42)
 		wgas(p, -1);
-	pthread_mutex_init(&p->death_mtx, NULL);
 	pthread_mutex_init(&p->write_mtx, NULL);
-	p->pair = 0;
-	if (p->n_philo % 2 == 0)
-		p->pair = 22;
 	p->phl = (t_phl **)malloc(sizeof(t_phl *) * (p->n_philo));
 	if (!p->phl)
-		wgas(p, -1);
+		wgas(p, -2);
 	fill_phl(p, av, -1);
+	while (++i < p->n_philo - 1)
+		p->phl[i]->r_fork = &p->phl[i + 1]->fork;
+	p->phl[i]->r_fork = &p->phl[0]->fork;
+	// p->phl[i]->r_fork = &p->phl[i]->fork;
+	// p->phl[i]->fork = p->phl[0]->fork;
 }
 
 void	fill_phl(struct philo *p, char **av, int i)
@@ -57,42 +58,47 @@ void	fill_phl(struct philo *p, char **av, int i)
 		p->phl[i]->ntiate = 0;
 		p->phl[i]->lastteating = 0;
 		p->phl[i]->write_mtx = &p->write_mtx;
-		p->phl[i]->death_mtx = &p->death_mtx;
 		pthread_mutex_init(&p->phl[i]->phl_mtx, NULL);
 		pthread_mutex_init(&p->phl[i]->fork.mtx, NULL);
 	}
+}
+
+void	wgas(struct philo *p, int status)
+{
+	int	i;
+
 	i = -1;
-	while (++i < p->n_philo - 1)
-		p->phl[i]->r_fork = &p->phl[i + 1]->fork;
-	p->phl[i]->r_fork = &p->phl[0]->fork;
-	// p->phl[i]->r_fork = &p->phl[i]->fork;
-	// p->phl[i]->fork = p->phl[0]->fork;
-}
-
-time_t	ttime(time_t tstart)
-{
-	struct timeval	t;
-
-	gettimeofday(&t, NULL);
-	return ((t.tv_sec * 1000 + t.tv_usec / 1000) - tstart);
-}
-
-static time_t	pc_time(void)
-{
-	struct timeval	t;
-
-	gettimeofday(&t, NULL);
-	return (t.tv_sec * 1000 + t.tv_usec / 1000);
-}
-
-void	tusleep(time_t mls)
-{
-	time_t			start;
-
-	start = pc_time(); 
-	// printf("MLS => %zu\n", mls);
-	while ((pc_time() - start) < mls)
+	if (status == -1)
+		printf("verif args, must be numbers > 0\n");
+	if (status == -2)
+		pthread_mutex_destroy(&p->write_mtx);
+	if (status == -1 || status == -2)
+		exit(status);
+	while (++i < p->n_philo && p->n_philo != 1)
 	{
-		usleep(500);
+		pthread_mutex_destroy(&p->phl[i]->phl_mtx);
+		pthread_mutex_destroy(&p->phl[i]->fork.mtx);
 	}
+	pthread_mutex_destroy(&p->write_mtx);
+	if (status == 0)
+		fphl(p, p->n_philo);
+	else if (status)
+		fphl(p, p->situation);
+	exit(status);
+}
+
+void	fphl(struct philo *p, int d)
+{
+	int	i;
+
+	i = -1;
+	while (++i < p->n_philo && i <= d)
+		free(p->phl[i]);
+	free(p->phl);
+}
+
+int	sstatus(struct philo *p, int d)
+{
+	p->situation = d;
+	return (d);
 }

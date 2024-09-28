@@ -5,9 +5,7 @@ CFLAGS = -Wall -Werror -Wextra -pthread -O3 -g3
 #CFLAGS += -fsanitize=thread
 
 SRC = philo.c \
-	wgas.c \
 	utils.c \
-	state.c \
 	routine.c \
 	process.c \
 

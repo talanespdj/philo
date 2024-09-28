@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 21:47:51 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/26 20:26:32 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/28 03:01:20 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PHILO_H
@@ -31,7 +31,7 @@ typedef enum w_sit
 	THINK,
 	SLEEP,
 	take,
-	debug,
+	debug
 }		t_sit;
 
 typedef enum w_health
@@ -49,56 +49,51 @@ typedef struct fork
 
 typedef struct philo
 {
-	pthread_mutex_t		death_mtx;
 	pthread_mutex_t		write_mtx;
-	pthread_t			death;
 	struct phl			**phl;
-	time_t				tstart;
-	int					situation;
-	int					ntteat;
-	int					pair;
+	pthread_t			liso;
 	int					n_philo;
 	time_t				tt_die;
 	time_t				tt_eat;
 	time_t				tt_sleep;
+	time_t				tstart;
+	int					ntteat;
+	int					situation;
 }			t_philo;
 
 typedef struct phl
 {
-	enum w_health		health;
 	pthread_t			thread;
+	int					id;
+	enum w_health		health;
+	pthread_mutex_t		phl_mtx;
+	pthread_mutex_t		*write_mtx;
 	struct fork			fork;
 	struct fork			*r_fork;
-	pthread_mutex_t		phl_mtx;
-	pthread_mutex_t		*death_mtx;
-	pthread_mutex_t		*write_mtx;
-	int					id;
-	int					tt_die;
-	int					tt_eat;
-	int					tt_sleep;
-	int					ntiate;
-	int					ntteat;
+	time_t				tt_die;
+	time_t				tt_eat;
+	time_t				tt_sleep;
 	time_t				tstart;
 	time_t				lastteating;
+	int					ntiate;
+	int					ntteat;
 }			t_phl;
 
 void				philosophers(struct philo *p);
 
 void				*momeseno(void *philo);
 void				*surveil(void *philo);
-
-void				everinit(struct philo *p, char **argv);
-void				fill_phl(struct philo *p, char **av, int i);
-time_t				ttime(time_t tstart);
-void				tusleep(time_t mls);
-
-void				zzsleep(struct phl *phl);
-void				think(struct phl *phl);
+int					valid(struct phl *phl);
+void				*handle_death(struct philo *p, int i);
 void				eat(struct phl *phl);
-int					death(struct phl *phl);
+
+void				everinit(struct philo *p, char **av, int i);
+void				fill_phl(struct philo *p, char **av, int i);
 
 void				wgas(struct philo *p, int status);
 void				fphl(struct philo *p, int d);
+time_t				ttime(time_t tstart);
+void				tusleep(time_t mls);
 int					sstatus(struct philo *p, int d);
 
 int					talanatoi(struct philo *p, char *str, int d);
