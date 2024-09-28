@@ -21,6 +21,7 @@ void	def_eat(struct phl *phl)
 	writeft(phl, take);
 	pthread_mutex_lock(&phl->phl_mtx);
 	phl->lastteating = ttime(phl->tstart);
+	phl->ntiate++;
 	pthread_mutex_unlock(&phl->phl_mtx);
 	writeft(phl, EAT);
 	tusleep(phl->tt_eat);
@@ -28,7 +29,6 @@ void	def_eat(struct phl *phl)
 	pthread_mutex_unlock(&phl->fork.mtx);
 	phl->r_fork->state = available;
 	pthread_mutex_unlock(&phl->r_fork->mtx);
-	phl->ntiate++;
 }
 
 void	rev_eat(struct phl *phl)
@@ -41,6 +41,7 @@ void	rev_eat(struct phl *phl)
 	writeft(phl, take);
 	pthread_mutex_lock(&phl->phl_mtx);
 	phl->lastteating = ttime(phl->tstart);
+	phl->ntiate++;
 	pthread_mutex_unlock(&phl->phl_mtx);
 	writeft(phl, EAT);
 	tusleep(phl->tt_eat);
@@ -48,5 +49,4 @@ void	rev_eat(struct phl *phl)
 	pthread_mutex_unlock(&phl->r_fork->mtx);
 	phl->fork.state = available;
 	pthread_mutex_unlock(&phl->fork.mtx);
-	phl->ntiate++;
 }
