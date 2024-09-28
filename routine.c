@@ -6,40 +6,28 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 17:56:42 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/28 03:04:57 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/28 07:37:29 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
-#include <stdint.h>
-
-int	valid(struct phl *phl)
-{
-	pthread_mutex_lock(&phl->phl_mtx);
-	if (phl->health == alive && ((phl->ntteat == -1)
-			|| (phl->ntteat != -1 && phl->ntiate <= phl->ntteat)))
-	{
-		pthread_mutex_unlock(&phl->phl_mtx);
-		return (1);
-	}
-	else
-	{
-		pthread_mutex_unlock(&phl->phl_mtx);
-		return (0);
-	}
-}
 
 void	*momeseno(void *philo)
 {
 	struct phl	*phl;
+	void		(*eat)(t_phl *phl);
 
 	phl = (struct phl *)philo;
+	eat = &def_eat;
 	if (!(phl->id % 2 == 0))
+	{
+		eat = &rev_eat;
 		usleep(500);
+	}
 	while (valid(phl))
 	{
 		eat(phl);
 		pthread_mutex_lock(&phl->phl_mtx);
-		if ((phl->ntteat != -1 && phl->ntiate == phl->ntteat))
+		if (phl->ntteat != -1 && phl->ntiate == phl->ntteat)
 		{
 			pthread_mutex_unlock(&phl->phl_mtx);
 			return (NULL);
@@ -90,22 +78,15 @@ void	*handle_death(struct philo *p, int i)
 	return (NULL);
 }
 
-void	eat(struct phl *phl)
+int	valid(struct phl *phl)
 {
-	pthread_mutex_lock(&phl->r_fork->mtx);
-	phl->r_fork->state = taken;
-	writeft(phl, take);
-	pthread_mutex_lock(&phl->fork.mtx);
-	phl->fork.state = taken;
-	writeft(phl, take);
 	pthread_mutex_lock(&phl->phl_mtx);
-	phl->lastteating = ttime(phl->tstart);
-	pthread_mutex_unlock(&phl->phl_mtx);
-	writeft(phl, EAT);
-	tusleep(phl->tt_eat);
-	phl->fork.state = available;
-	pthread_mutex_unlock(&phl->fork.mtx);
-	phl->r_fork->state = available;
-	pthread_mutex_unlock(&phl->r_fork->mtx);
-	phl->ntiate++;
+	if (phl->health == alive && ((phl->ntteat == -1)
+			|| (phl->ntteat != -1 && phl->ntiate <= phl->ntteat)))
+	{
+		pthread_mutex_unlock(&phl->phl_mtx);
+		return (1);
+	}
+	else
+		return (pthread_mutex_unlock(&phl->phl_mtx));
 }

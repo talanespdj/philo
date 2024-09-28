@@ -41,11 +41,6 @@ void	writeft(struct phl *phl, t_sit sit)
 	time_t	tstart;
 
 	tstart = ttime(phl->tstart);
-	if (sit == debug)
-	{
-		printf("\033[0;93m%zu %d\tDEBUG TIME\n\033[0m", tstart, phl->id);
-		return ;
-	}
 	pthread_mutex_lock(&phl->phl_mtx);
 	if (phl->health == dead)
 	{

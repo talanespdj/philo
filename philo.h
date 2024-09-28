@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 21:47:51 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/28 03:01:20 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/28 06:37:08 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PHILO_H
@@ -16,7 +16,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <pthread.h>
-# include <sys/wait.h>
 # include <sys/time.h>
 
 typedef enum w_state
@@ -30,8 +29,7 @@ typedef enum w_sit
 	EAT,
 	THINK,
 	SLEEP,
-	take,
-	debug
+	take
 }		t_sit;
 
 typedef enum w_health
@@ -81,14 +79,16 @@ typedef struct phl
 
 void				philosophers(struct philo *p);
 
+void				everinit(struct philo *p, char **av, int i);
+void				fill_phl(struct philo *p, char **av, int i);
+
 void				*momeseno(void *philo);
 void				*surveil(void *philo);
 int					valid(struct phl *phl);
 void				*handle_death(struct philo *p, int i);
-void				eat(struct phl *phl);
 
-void				everinit(struct philo *p, char **av, int i);
-void				fill_phl(struct philo *p, char **av, int i);
+void				def_eat(struct phl *phl);
+void				rev_eat(struct phl *phl);
 
 void				wgas(struct philo *p, int status);
 void				fphl(struct philo *p, int d);

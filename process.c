@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 22:08:26 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/28 02:27:01 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/28 06:33:46 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
@@ -34,8 +34,6 @@ void	everinit(struct philo *p, char **av, int i)
 	while (++i < p->n_philo - 1)
 		p->phl[i]->r_fork = &p->phl[i + 1]->fork;
 	p->phl[i]->r_fork = &p->phl[0]->fork;
-	// p->phl[i]->r_fork = &p->phl[i]->fork;
-	// p->phl[i]->fork = p->phl[0]->fork;
 }
 
 void	fill_phl(struct philo *p, char **av, int i)
