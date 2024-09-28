@@ -54,6 +54,7 @@ void	fill_phl(struct philo *p, char **av, int i)
 			p->phl[i]->ntteat = p->ntteat;
 		p->phl[i]->fork.id = i + 1;
 		p->phl[i]->ntiate = 0;
+		p->phl[i]->n_philo = p->n_philo;
 		p->phl[i]->lastteating = 0;
 		p->phl[i]->write_mtx = &p->write_mtx;
 		pthread_mutex_init(&p->phl[i]->phl_mtx, NULL);

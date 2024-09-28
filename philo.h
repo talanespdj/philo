@@ -73,6 +73,7 @@ typedef struct phl
 	time_t				tt_sleep;
 	time_t				tstart;
 	time_t				lastteating;
+	int					n_philo;
 	int					ntiate;
 	int					ntteat;
 }			t_phl;

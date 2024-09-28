@@ -2,6 +2,8 @@ NAME = philo
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -pthread -O3 -g3 
 
+CFLAGS += -fsanitize=thread
+
 SRC = philo.c \
 	utils.c \
 	eating.c \

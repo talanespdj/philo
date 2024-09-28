@@ -28,8 +28,10 @@ app pour gerer les windows sur mac
 [✅]= normer le tout
 
 
-[ ]= lorsqu'il y a un ntteat et qu'il est remplit et que c'est la cause de pourquoi quelqu'un meurto
+[✅]= lorsqu'il y a un ntteat et qu'il est remplit et que c'est la cause de pourquoi quelqu'un meurto
 
+
+[ ]= ne fonctionne pas avec un nombre de philo impair + DATARACE
 
 \\\\\\\\\\\\ Makefile !!
 	ENLEVER FSANITIZE \\\\\\

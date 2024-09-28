@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 21:47:32 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/28 08:14:46 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/28 09:13:53 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
@@ -22,10 +22,10 @@ void	philosophers(struct philo *p)
 		p->phl[0]->fork.state = taken;
 		printf("%zu %d has taken a fork\n", ttime(p->tstart), 1);
 		while (ttime(p->tstart) < p->tt_die)
-			i++;
+			i = 0;
 		pthread_mutex_unlock(&p->phl[0]->fork.mtx);
 		printf("%zu %d died\n", ttime(p->tstart), 1);
-		wgas(p, 0);
+		return ;
 	}
 	pthread_create(&p->liso, NULL, &surveil, (void *)p);
 	while (++i < p->n_philo)
