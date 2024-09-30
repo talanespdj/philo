@@ -84,7 +84,7 @@ int	talanatoi(struct philo *p, char *str, int d)
 	if (d != 5 && (nt > 2147483647 || nt <= 0))
 		return (sstatus(p, 42));
 	else if (d == 5)
-		if (nt > 2147483647 || nt < 0)
-			return (sstatus(p, 42));
+		if (nt > 2147483647 || nt <= 0)
+			return (sstatus(p, 22));
 	return (nt);
 }

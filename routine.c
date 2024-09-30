@@ -6,7 +6,7 @@
 /*   By: tespandj <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 17:56:42 by tespandj          #+#    #+#             */
-/*   Updated: 2024/09/28 09:33:13 by tespandj         ###   ########.fr       */
+/*   Updated: 2024/09/29 20:30:11 by tespandj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "philo.h"
@@ -56,12 +56,12 @@ void	*surveil(void *philo)
 		t = ttime(p->tstart) - p->phl[i]->lastteating;
 		pthread_mutex_unlock(&p->phl[i]->phl_mtx);
 		if (t > p->tt_die)
-			return (handle_death(p, i));
+			return (death(p, i));
 		i++;
 	}
 }
 
-void	*handle_death(struct philo *p, int i)
+void	*death(struct philo *p, int i)
 {
 	int	r;
 

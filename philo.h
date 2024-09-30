@@ -42,7 +42,6 @@ typedef struct fork
 {
 	pthread_mutex_t		mtx;
 	enum w_state		state;
-	int					id;
 }			t_fork;
 
 typedef struct philo
@@ -86,7 +85,7 @@ void				fill_phl(struct philo *p, char **av, int i);
 void				*momeseno(void *philo);
 void				*surveil(void *philo);
 int					valid(struct phl *phl);
-void				*handle_death(struct philo *p, int i);
+void				*death(struct philo *p, int i);
 
 void				def_eat(struct phl *phl);
 void				rev_eat(struct phl *phl);
